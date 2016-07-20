@@ -1,1 +1,1 @@
-./scripts/setup-keyboard.sh
+bash /arch-installer/scripts/setup-keyboard.sh
