@@ -18,7 +18,7 @@ do
         "EN - US") 
 		echo LANG=en_US.UTF-8 > arch-installer/locale.conf
 		break;;
-	* ) echo "Wrong!!!"
+	* ) echo "Invalid input. Try again..."
             exit 1
     esac
     break
