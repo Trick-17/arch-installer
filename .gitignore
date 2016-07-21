@@ -1,2 +1,6 @@
+### build.sh output directories
 /releng/work
 /releng/out
+
+### VS Code
+.vscode
