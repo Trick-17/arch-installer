@@ -6,11 +6,86 @@ It is based on archiso and takes inspiration from https://blog.chendry.org/autom
 where you may also find some descriptions to the various scripts etc.
 
 
-Procedure
----------
 
-The scripts are called by *install.sh* one after another. This should happen automatically due to
-*autorun.sh*, which is called on EFI startup of the live iso. 
+Using this repository
+=====================
 
-Note that 02-setup-partitions.sh requires a partition called *Arch*, since this procedure is primarily
-intended for re-installation onto a pre-existing partition.
+Clone the repository and cd to *repo/releng*. Now execute
+
+    sudo ./build.sh -v
+
+An iso will be generated in the folder *repo/relelng/out*.
+Booting a machine using this iso will land you in Arch's zsh-shell.
+If *autorun.sh* executes on startup, you only need to answer the questions it asks.
+Otherwise, call it yourself manually.
+
+*autorun.sh* simply calls *install.sh*, which in turn calls the various installation scripts one after another.
+
+**Note** that the installation requires a partition called *Arch*, since this procedure is primarily
+intended for re-installation onto a pre-existing partition. You may thus have to `mkpart` beforehand.
+Also note that for *autorun.sh* to run automatically you need EFI startup.
+
+
+
+Building your own repository
+============================
+
+Archiso
+-------
+
+Install archiso with
+
+    sudo pacman -S archiso
+
+You may start out with *baseline* or *releng*, this repository uses the latter.
+To start with a clean new folder, copy it with
+
+    cp /usr/share/archiso/configs/releng ~/arch-installer
+    cd ~/arch-installer
+    git init
+    git commit -am "initial commit"
+
+Running `build.sh` will fill the `work` and `out` folder, which is why they should be in your `.gitignore`.
+
+As the installation scripts will require `git`, add it to the `packages.both` file.
+Now run
+
+    sudo ./build.sh -v
+
+This will create an .iso in the /out subdirectory of the repo.
+You may use dd to write this to a USB disk, e.g.:
+
+    dd if=out/archlinux-2015.01.30-dual.iso of=/dev/sd_ bs=2M
+
+**Booting from this image will land you in Arch's zsh-shell**.
+
+Arch iso root filesystem
+------------------------
+
+The files in the folder *releng/airootfs* will be available to you in the root folder
+when starting your live arch image.
+
+autorun.sh
+----------
+Take a look at the /airootfs/root/.automated_script.sh file.
+When the live system boots, the root user is automatically logged on, and this script is automatically executed.
+The script looks at the options passed to the kernel (/proc/cmdline) and executes whatever is passed as the “script” parameter.
+
+In */efiboot/loader/entries/archiso-x86_64-cd.conf*, you need to modify the last line:
+
+    options archisobasedir=%INSTALL_DIR% archisolabel=%ARCHISO_LABEL% script=autorun.sh
+
+Create a script *autorun.sh* in
+
+    #!/bin/bash
+    echo "hello, world"
+
+Now, if you rebuild and boot from the ISO, it will automatically run the autorun.sh script and you’ll see “hello, world” output.
+
+**Note**: you’ll need to clear out the /work directory before rebuilding.
+
+Cloning and running the installation scripts
+--------------------------------------------
+
+Installation Scripts
+--------------------
