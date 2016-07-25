@@ -25,24 +25,48 @@ do
     break
 done
 
+# nicer formatting for pacstrap
+sed -i 's/#Color/Color/g' /etc/pacman.conf
+sed -i 's/#TotalDownload/TotalDownload/g' /etc/pacman.conf
+
+# install packages
 pacstrap -c /mnt \
-  base base-devel \     # Always necessary! base-devel includes gcc
-  openssh \             # Open SSH client
-  wget \                # Download stuff from the web in your shell
-  vim \                 # Editor
-  ttf-dejavu \          # Nice font
-  adobe-source-code-pro-fonts \ # Nice Adobe font
-  git \ 
+  base base-devel \
+  openssh \
+  wget \
+  vim \
+  ttf-dejavu \
+  adobe-source-code-pro-fonts \
+  git \
   python \
   cmake \
   archiso \
-  $graphics \           # Graphics (determined by vendor)
-  plasma \              # KDE Desktop group
-  sddm \                # Window manager
-  kde-applications \    # Useful desktop apps
-  kdegraphics-okular \  # PDF reader
+  $graphics \
+  plasma \
+  sddm \
+  kde-applications \
+  kdegraphics-okular \
   firefox \
   zsh
+
+# pacstrap -c /mnt \
+#   base base-devel \             # Always necessary! base-devel includes gcc
+#   openssh \                     # Open SSH client
+#   wget \                        # Download stuff from the web in your shell
+#   vim \                         # Editor
+#   ttf-dejavu \                  # Nice font
+#   adobe-source-code-pro-fonts \ # Nice Adobe font
+#   git \ 
+#   python \
+#   cmake \
+#   archiso \
+#   $graphics \                   # Graphics (determined by vendor)
+#   plasma \                      # KDE Desktop group
+#   sddm \                        # Window manager
+#   kde-applications \            # Useful desktop apps
+#   kdegraphics-okular \          # PDF reader
+#   firefox \
+#   zsh
 
 # later
 #   vscode \
