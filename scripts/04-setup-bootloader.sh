@@ -1,18 +1,17 @@
-# cat <<-END | arch-chroot /mnt
-# sed -i 's/^MODULES=.*/MODULES="nouveau"/' /etc/mkinitcpio.conf
-# mkinitcpio -p linux
-# END
+mkdir -p /mnt/boot
+mount $( blkid -L EFI ) /mnt/boot
 
-# mkdir /efi
-# mount $( blkid -L EFI ) /efi
+bootctl --path=/mnt/boot install
 
-# cp -v /mnt/boot/* /efi
+cat <<-END > /mnt/boot/loader/entries/arch.conf
+title Arch Linux
+linux /vmlinuz-linux
+initrd /initramfs-linux.img
+options root=PARTUUID=$( blkid -s PARTUUID -o value $( blkid -L Arch ) )
+END
 
-# gummiboot install --path=/efi
-
-# cat <<-END > /efi/loader/entries/arch.conf
-# title Arch Linux
-# linux /vmlinuz-linux
-# initrd /initramfs-linux.img
-# options root=PARTUUID=$( blkid -s PARTUUID -o value $( blkid -L Arch ) )
-# END
+cat <<-END > /mnt/boot/loader/loader.conf
+default arch
+timeout 4
+editor  0
+END

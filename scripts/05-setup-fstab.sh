@@ -1,0 +1,1 @@
+genfstab -pU /mnt >> /mnt/etc/fstab

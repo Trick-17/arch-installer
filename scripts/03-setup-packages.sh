@@ -30,33 +30,16 @@ sed -i 's/#Color/Color/g' /etc/pacman.conf
 sed -i 's/#TotalDownload/TotalDownload/g' /etc/pacman.conf
 
 # install packages
-pacstrap -c /mnt \
-  base base-devel \
-  openssh \
-  wget \
-  vim \
-  ttf-dejavu \
-  adobe-source-code-pro-fonts \
-  git \
-  python \
-  cmake \
-  archiso \
-  $graphics \
-  plasma \
-  sddm \
-  kde-applications \
-  kdegraphics-okular \
-  firefox \
-  zsh
+pacstrap -c /mnt base base-devel intel-ucode
 
 # pacstrap -c /mnt \
-#   base base-devel \             # Always necessary! base-devel includes gcc
+#   base base-devel intel-ucode \             # Always necessary! base-devel includes gcc
 #   openssh \                     # Open SSH client
 #   wget \                        # Download stuff from the web in your shell
 #   vim \                         # Editor
 #   ttf-dejavu \                  # Nice font
 #   adobe-source-code-pro-fonts \ # Nice Adobe font
-#   git \ 
+#   git \
 #   python \
 #   cmake \
 #   archiso \
@@ -66,7 +49,7 @@ pacstrap -c /mnt \
 #   kde-applications \            # Useful desktop apps
 #   kdegraphics-okular \          # PDF reader
 #   firefox \
-#   zsh
+#   zsh \
 
 # later
 #   vscode \
