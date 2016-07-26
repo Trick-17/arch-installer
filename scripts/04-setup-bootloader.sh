@@ -1,6 +1,3 @@
-mkdir -p /mnt/boot
-mount $( blkid -L EFI ) /mnt/boot
-
 bootctl --path=/mnt/boot install
 
 cat <<-END > /mnt/boot/loader/entries/arch.conf
