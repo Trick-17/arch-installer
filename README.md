@@ -5,6 +5,8 @@ This project aims to create an arch distro custom to the authors' needs.
 It is based on archiso and takes inspiration from https://blog.chendry.org/automating-arch-linux-installation/,
 where you may also find some descriptions to the various scripts etc.
 
+This version will format your partitions and install Arch and download and install
+a set of packages. It is not meant to keep bootloaders or disk formattings etc. intact!
 
 
 Using this repository
@@ -24,6 +26,26 @@ Otherwise, call it yourself manually.
 **Note** that the installation requires a partition called *Arch*, since this procedure is primarily
 intended for re-installation onto a pre-existing partition. You may thus have to `mkpart` beforehand.
 Also note that for *autorun.sh* to run automatically you need EFI startup.
+
+### A few necessary steps
+In order for the *autorun.sh* script to work (specifically the *02-setup-partitions* script), you need to have
+two partitions, named **EFI** and **Arch** respectively. If you are re-installing, and the partitions
+already exist, you need not repeat this.
+
+The developers used the following to prepare the disk:
+
+    parted
+
+    mklabel GPT
+    mkpart ESP fat32 1MiB 513MiB
+    set 1 boot on
+    quit
+
+    mkfs.ext4 -L Arch /dev/sda2
+    mkfs.fat -F32 /dev/sda1
+    fatlabel /dev/sda1 EFI
+
+For more information see https://wiki.archlinux.org/index.php/GNU_Parted#UEFI.2FGPT_examples
 
 
 
