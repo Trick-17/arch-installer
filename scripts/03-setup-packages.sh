@@ -30,7 +30,7 @@ sed -i 's/#Color/Color/g' /etc/pacman.conf
 sed -i 's/#TotalDownload/TotalDownload/g' /etc/pacman.conf
 
 # install packages
-pacstrap -c /mnt base base-devel intel-ucode
+pacstrap /mnt base base-devel intel-ucode
 
 # pacstrap -c /mnt \
 #   base base-devel intel-ucode \             # Always necessary! base-devel includes gcc

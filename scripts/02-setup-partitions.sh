@@ -6,5 +6,6 @@ mount $device /mnt
 
 mkdir -p /mnt/boot
 yes | mkfs.fat -F32 $bootdevice 
+fatlabel $bootdevice EFI
 
 mount $bootdevice /mnt/boot
