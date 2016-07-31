@@ -1,10 +1,11 @@
 #!/bin/bash
-graphics="mesa mesa-libgl xf86-video-vesa"  # Default graphics vendor
+graphics=""  # Default graphics vendor
 echo "Please choose your graphics vendor:"
-select yn in "default" "intel" "nvidia" "amd";
+select yn in "default" "intel" "nvidia" "amd" "vbox";
 do 
     case $yn in
-        "default")
+        "default") 
+        graphics="mesa mesa-libgl xf86-video-vesa"
 		break;;
 
         "intel") 
@@ -16,7 +17,11 @@ do
 		break;;
 
         "amd") 
-		# graphics = "mesa mesa-libgl"
+        graphics="mesa mesa-libgl xf86-video-vesa"
+		break;;
+
+        "vbox") 
+        graphics="virtualbox-guest-modules-arch virtualbox-guest-utils"
 		break;;
 
 	* ) echo "Invalid input. Try again..."
