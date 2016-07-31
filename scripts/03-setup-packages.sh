@@ -1,5 +1,5 @@
 #!/bin/bash
-graphics="mesa mesa-libgl xf86-video-wesa"  # Default graphics vendor
+graphics="mesa mesa-libgl xf86-video-vesa"  # Default graphics vendor
 echo "Please choose your graphics vendor:"
 select yn in "default" "intel" "nvidia" "amd";
 do 
