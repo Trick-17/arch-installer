@@ -44,11 +44,11 @@ do
 done
 
 
-# nicer formatting for pacstrap
+### nicer formatting for pacstrap
 sed -i 's/#Color/Color/g' /etc/pacman.conf
 sed -i 's/#TotalDownload/TotalDownload/g' /etc/pacman.conf
 
-# install packages
+### install packages
 pacstrap /mnt base base-devel intel-ucode \
     sudo \
     wget \
@@ -57,6 +57,11 @@ pacstrap /mnt base base-devel intel-ucode \
     vim \
     zsh \
     $graphics $desktop
+
+### nicer formatting for pacstrap on installed
+sed -i 's/#Color/Color/g' /mnt/etc/pacman.conf
+sed -i 's/#TotalDownload/TotalDownload/g' /mnt/etc/pacman.conf
+
 # pacstrap -c /mnt \
 #   base base-devel intel-ucode \             # Always necessary! base-devel includes gcc
 #   openssh \                     # Open SSH client
