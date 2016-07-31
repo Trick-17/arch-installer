@@ -6,16 +6,17 @@ do
         "DE - Deutschland") 
 		loadkeys de-latin1 
 		echo KEYMAP=de-latin1 > arch-installer/vconsole.conf
-		echo LANG=de_DE.UTF-8 > arch-installer/locale.conf
+		echo LANG=en_US.UTF-8 > arch-installer/locale.conf
 		break;;
 
         "DE - Schweiz") 
 		loadkeys sg-latin1
 		echo KEYMAP=sg-latin1 > arch-installer/vconsole.conf
-		echo LANG=de_CH.UTF-8 > arch-installer/locale.conf
+		echo LANG=en_US.UTF-8 > arch-installer/locale.conf
 		break;;
 
         "EN - US") 
+		echo KEYMAP=us > arch-installer/vconsole.conf
 		echo LANG=en_US.UTF-8 > arch-installer/locale.conf
 		break;;
 	* ) echo "Invalid input. Try again..."

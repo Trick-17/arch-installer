@@ -38,6 +38,7 @@ The developers used the following to prepare the disk:
 
     mklabel GPT
     mkpart ESP fat32 1MiB 513MiB
+    mkpart primary ext4 513MiB 100%
     set 1 boot on
     quit
 
