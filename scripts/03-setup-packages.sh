@@ -25,13 +25,38 @@ do
     break
 done
 
+desktop=""
+echo "Please select the desktop you want to install"
+select yn in "none" "kde plasma";
+do 
+    case $yn in
+        "none")
+		break;;
+
+        "kde plasma") 
+		desktop="plasma sddm kde-applications kdegraphics-okular firefox"
+		break;;
+
+	* ) echo "Invalid input. Try again..."
+            exit 1
+    esac
+    break
+done
+
+
 # nicer formatting for pacstrap
 sed -i 's/#Color/Color/g' /etc/pacman.conf
 sed -i 's/#TotalDownload/TotalDownload/g' /etc/pacman.conf
 
 # install packages
-pacstrap /mnt base base-devel intel-ucode
-
+pacstrap /mnt base base-devel intel-ucode \
+    sudo \
+    wget \
+    openssh \
+    git \
+    vim \
+    zsh \
+    $graphics $desktop
 # pacstrap -c /mnt \
 #   base base-devel intel-ucode \             # Always necessary! base-devel includes gcc
 #   openssh \                     # Open SSH client
