@@ -1,4 +1,4 @@
-arch-chroot /mnt bootctl --path=/mnt/boot install
+arch-chroot /mnt bootctl --path=/boot install
 
 cat <<-END > /mnt/boot/loader/entries/arch.conf
 title Arch Linux
