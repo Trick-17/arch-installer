@@ -17,4 +17,4 @@ do
     break
 done
 
-arch-chroot /mnt nwclock --systohc --utc
+arch-chroot /mnt hwclock --systohc --utc
