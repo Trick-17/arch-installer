@@ -61,6 +61,7 @@ pacstrap /mnt base base-devel intel-ucode \
     git \
     vim \
     zsh \
+    archiso \
     $graphics $desktop
 
 ### nicer formatting for pacstrap on installed
