@@ -48,6 +48,16 @@ The developers used the following to prepare the disk:
 
 For more information see https://wiki.archlinux.org/index.php/GNU_Parted#UEFI.2FGPT_examples
 
+### After the autorun script
+Note that currently, to run the desktop, you need to manually run
+
+    arch-chroot /mnt
+    systemctl enable sddm
+    exit
+
+If you are using VirtualBox, be aware that EFI needs to be activated (Settings -> System) and nested paging
+needs to be deactivated (Settings -> System -> Processor).
+
 
 
 Building your own repository
@@ -109,6 +119,22 @@ Now, if you rebuild and boot from the ISO, it will automatically run the autorun
 
 Cloning and running the installation scripts
 --------------------------------------------
+Clone the repo with
+    
+    git clone https://github.com/GMueller/arch-installer
 
 Installation Scripts
 --------------------
+### 01-setup-partitions.sh
+Use the prepared 'EFI' and 'Arch' partition labels to mount the partitions.
+### 02-setup-packages.sh
+Select the packages that should be installed, providing options for graphics drivers and desktop.
+### 03-setup-keyboard.sh
+### 04-setup-locale.sh
+### 05-setup-bootloader.sh
+### 06-setup-fstab.sh
+### 07-setup-timezome.sh
+### 08-setup-hostname.sh
+### 09-setup-network.sh
+### 10-setup-sshd.sh
+### 11-setup-users.sh
