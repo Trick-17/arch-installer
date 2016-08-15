@@ -8,6 +8,8 @@ where you may also find some descriptions to the various scripts etc.
 This version will format your partitions and install Arch and download and install
 a set of packages. It is not meant to keep bootloaders or disk formattings etc. intact!
 
+See also the Arch Beginners Guide from which the developers took helpful information and guidance: https://wiki.archlinux.org/index.php/Beginners%27_guide
+
 
 Using this repository
 =====================
