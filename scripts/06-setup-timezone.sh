@@ -4,11 +4,11 @@ select yn in "Deutschland" "Schweiz";
 do 
     case $yn in
         "Deutschland") 
-		arch-chroot /mnt ln -s /usr/share/zoneinfor/Europe/Berlin
+		arch-chroot /mnt ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime
         break;;
 
         "Schweiz") 
-		arch-chroot /mnt ln -s /usr/share/zoneinfor/Europe/Zurich
+		arch-chroot /mnt ln -s /usr/share/zoneinfo/Europe/Zurich /etc/localtime
         break;;
 
 	* ) echo "Invalid input. Try again..."
