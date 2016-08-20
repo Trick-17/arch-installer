@@ -1,3 +1,4 @@
+bash arch-installer/scripts/00-user-input.sh
 bash arch-installer/scripts/01-setup-partitions.sh
 bash arch-installer/scripts/02-setup-packages.sh
 bash arch-installer/scripts/03-setup-languages.sh

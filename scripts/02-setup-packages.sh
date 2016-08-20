@@ -1,59 +1,13 @@
 #!/bin/bash
-graphics=""  # Default graphics vendor
-echo "Please choose your graphics vendor:"
-select yn in "default" "intel" "nvidia" "amd" "vbox";
-do 
-    case $yn in
-        "default") 
-        graphics="mesa mesa-libgl xf86-video-vesa"
-		break;;
 
-        "intel") 
-		graphics="mesa mesa-libgl xf86-video-intel"
-		break;;
+### Get user input variables
+source arch-installer/user-input.txt
 
-        "nvidia") 
-		graphics="nvidia nvidia-libgl"
-		break;;
-
-        "amd") 
-        graphics="mesa mesa-libgl xf86-video-vesa"
-		break;;
-
-        "vbox") 
-        graphics="virtualbox-guest-modules-arch virtualbox-guest-utils"
-		break;;
-
-	* ) echo "Invalid input. Try again..."
-            exit 1
-    esac
-    break
-done
-
-desktop=""
-echo "Please select the desktop you want to install"
-select yn in "none" "kde plasma";
-do 
-    case $yn in
-        "none")
-		break;;
-
-        "kde plasma") 
-		desktop="plasma sddm kde-applications kdegraphics-okular firefox"
-		break;;
-
-	* ) echo "Invalid input. Try again..."
-            exit 1
-    esac
-    break
-done
-
-
-### nicer formatting for pacstrap
+### Nicer formatting for pacstrap
 sed -i 's/#Color/Color/g' /etc/pacman.conf
 sed -i 's/#TotalDownload/TotalDownload/g' /etc/pacman.conf
 
-### install packages
+### Install packages
 pacstrap /mnt base base-devel intel-ucode \
     sudo \
     wget \
@@ -62,9 +16,9 @@ pacstrap /mnt base base-devel intel-ucode \
     vim \
     zsh \
     archiso \
-    $graphics $desktop
+    $USER_GRAPHICS $USER_DESKTOP
 
-### nicer formatting for pacstrap on installed
+### Nicer formatting for pacstrap on installed
 sed -i 's/#Color/Color/g' /mnt/etc/pacman.conf
 sed -i 's/#TotalDownload/TotalDownload/g' /mnt/etc/pacman.conf
 
@@ -79,7 +33,7 @@ sed -i 's/#TotalDownload/TotalDownload/g' /mnt/etc/pacman.conf
 #   python \
 #   cmake \
 #   archiso \
-#   $graphics \                   # Graphics (determined by vendor)
+#   $USER_GRAPHICS \                   # Graphics (determined by vendor)
 #   plasma \                      # KDE Desktop group
 #   sddm \                        # Window manager
 #   kde-applications \            # Useful desktop apps
