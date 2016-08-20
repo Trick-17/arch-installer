@@ -1,0 +1,8 @@
+[General]
+ColorScheme=Breeze Dark
+Name=Breeze Dark
+shadeSortColumn=true
+widgetStyle=Breeze
+
+[Icons]
+Theme=breeze-dark
