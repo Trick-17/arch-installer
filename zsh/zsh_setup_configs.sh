@@ -1,4 +1,4 @@
 setopt EXTENDED_GLOB
-for rcfile in arch-installer/.zprezto/runcoms/^README.md(.N); do
-  cp "$rcfile" "/mnt/etc/skel/.${rcfile:t}"
+for rcfile in /mnt/etc/skel/.zprezto/runcoms/^README.md(.N); do
+  ln -s ".zprezto/runcoms/${rcfile:t}" "/mnt/etc/skel/.${rcfile:t}"
 done
