@@ -9,7 +9,8 @@ bash arch-installer/scripts/07-setup-hostname.sh
 bash arch-installer/scripts/08-setup-network.sh
 bash arch-installer/scripts/09-setup-sshd.sh
 bash arch-installer/scripts/10-setup-desktop.sh
-bash arch-installer/scripts/11-setup-users.sh
-# bash arch-installer/scripts/12-setup-aur.sh
-# bash arch-installer/scripts/13-setup-rootfs.sh
-# bash arch-installer/scripts/14-setup-personal.sh
+bash arch-installer/scripts/11-setup-shell.sh
+bash arch-installer/scripts/12-setup-users.sh
+# bash arch-installer/scripts/13-setup-aur.sh
+# bash arch-installer/scripts/14-setup-rootfs.sh
+# bash arch-installer/scripts/15-setup-personal.sh

@@ -1,0 +1,14 @@
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# This sets cd=pushd
+setopt AUTO_PUSHD
+
+# 10 second wait if you do something that will delete everything
+setopt RM_STAR_WAIT
+
+# Bind home and end keys
+bindkey '\e[1~' beginning-of-line
+bindkey '\e[4~' end-of-line
