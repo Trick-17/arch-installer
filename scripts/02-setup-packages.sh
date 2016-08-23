@@ -13,10 +13,12 @@ pacstrap /mnt base base-devel intel-ucode \
     wget \
     openssh \
     git \
+    cmake \
     vim \
     zsh \
     powerline-fonts \
     archiso \
+    yakuake \
     $USER_GRAPHICS $USER_DESKTOP
 
 ### Nicer formatting for pacstrap on installed
