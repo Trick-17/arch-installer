@@ -3,6 +3,13 @@
 ### Get user input variables
 source arch-installer/user-input.txt
 
+### Place yakuake into autostart
+mkdir -p /mnt/etc/skel/.config/autostart-scripts/
+cp arch-installer/autostart/yakuake.sh /mnt/etc/skel/.config/autostart-scripts/yakuake.sh
+
+mkdir -p /mnt/etc/skel/.kde4/share/config/
+cp arch-installer/kdeglobals /mnt/etc/skel/.kde4/share/config/kdeglobals
+
 ### Clone the Prezto files
 git clone --recursive https://github.com/sorin-ionescu/prezto.git /mnt/etc/skel/.zprezto
 
@@ -26,6 +33,3 @@ sed -i "s|SHELL=/bin/bash|SHELL=/bin/zsh|g" /mnt/etc/default/useradd
 git clone https://github.com/powerline/fonts
 export HOME="/mnt/etc/skel"
 zsh ./fonts/install.sh
-
-### Place yakuake into autostart
-cp arch-installer/autostart/yakuake.sh /mnt/etc/skel/.config/autostart-scripts/
