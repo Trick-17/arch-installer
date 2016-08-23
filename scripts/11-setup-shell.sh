@@ -5,10 +5,8 @@ source arch-installer/user-input.txt
 
 ### Place yakuake into autostart
 mkdir -p /mnt/etc/skel/.config/autostart-scripts/
+chmod +x arch-installer/autostart/yakuake.sh
 cp arch-installer/autostart/yakuake.sh /mnt/etc/skel/.config/autostart-scripts/yakuake.sh
-
-mkdir -p /mnt/etc/skel/.kde4/share/config/
-cp arch-installer/kdeglobals /mnt/etc/skel/.kde4/share/config/kdeglobals
 
 ### Clone the Prezto files
 git clone --recursive https://github.com/sorin-ionescu/prezto.git /mnt/etc/skel/.zprezto
