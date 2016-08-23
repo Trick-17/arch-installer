@@ -26,3 +26,6 @@ sed -i "s|SHELL=/bin/bash|SHELL=/bin/zsh|g" /mnt/etc/default/useradd
 git clone https://github.com/powerline/fonts
 export HOME="/mnt/etc/skel"
 zsh ./fonts/install.sh
+
+### Place yakuake into autostart
+cp arch-installer/autostart/yakuake.sh /mnt/etc/skel/.config/autostart-scripts/

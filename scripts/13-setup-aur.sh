@@ -1,2 +1,4 @@
 ### Install yaourt
-arch-chroot /mnt arch-installer/yaourt.sh
+mkdir -p /mnt/tmp/
+cp arch-installer/yaourt.sh /mnt/tmp/
+arch-chroot /mnt/tmp yaourt.sh
