@@ -12,3 +12,6 @@ setopt RM_STAR_WAIT
 # Bind home and end keys
 bindkey '\e[1~' beginning-of-line
 bindkey '\e[4~' end-of-line
+
+# fixes strange cursor position / formating bug
+export LANG=<replace>

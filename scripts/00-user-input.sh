@@ -73,6 +73,15 @@ done
 ###--------------------------------------------------
 
 
+###--------- zsh Theme ------------------------------
+echo "Please choose your keyboard-layout and language:"
+select zshtheme in "gideon" "nicholas" "josh" "sorin";
+do
+    break
+done
+###--------------------------------------------------
+
+
 ###--------- Hostname -------------------------------
 echo "Please type in a hostname (lowercase!):"
 read -p 'Hostname: ' hostname
@@ -89,5 +98,6 @@ echo "USER_GRAPHICS=\"$graphics\"" >> arch-installer/user-input.txt
 echo "USER_DESKTOP=\"$desktop\"" >> arch-installer/user-input.txt
 echo "USER_LANGUAGE=\"$language\"" >> arch-installer/user-input.txt
 echo "USER_TIMEZONE=\"$timezone\"" >> arch-installer/user-input.txt
+echo "USER_ZSH_THEME=\"$zshtheme\"" >> arch-installer/user-input.txt
 echo "USER_HOSTNAME=\"$hostname\"" >> arch-installer/user-input.txt
 echo "USER_USERNAME=\"$username\"" >> arch-installer/user-input.txt

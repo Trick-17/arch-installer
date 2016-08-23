@@ -15,6 +15,7 @@ pacstrap /mnt base base-devel intel-ucode \
     git \
     vim \
     zsh \
+    powerline-fonts \
     archiso \
     $USER_GRAPHICS $USER_DESKTOP
 
