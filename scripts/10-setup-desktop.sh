@@ -13,10 +13,6 @@ then
 
     arch-chroot /mnt systemctl enable sddm
 
-    ### Copy GTK theme file s.t. all users automatically have this
-    cp arch-installer/.gtkrc-2.0 /mnt/etc/skel/
-
-    ### Copy KDE theme file s.t. all users automatically have this
-    mkdir -p /mnt/etc/skel/.kde4/share/config/
-    cp arch-installer/kdeglobals /mnt/etc/skel/.kde4/share/config/kdeglobals
+    ### Copy desktop theme file s.t. all users automatically have this
+    cp --parents arch-installer/configuration_desktop/* /mnt/etc/skel/
 fi

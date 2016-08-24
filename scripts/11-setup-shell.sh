@@ -12,17 +12,17 @@ cp arch-installer/autostart/yakuake.sh /mnt/etc/skel/.config/autostart-scripts/y
 git clone --recursive https://github.com/sorin-ionescu/prezto.git /mnt/etc/skel/.zprezto
 
 ### Set correct theme
-sed -i "s|theme '<replace>'|theme '$USER_ZSH_THEME'|g" arch-installer/zsh/zpreztorc
+sed -i "s|theme '<replace>'|theme '$USER_ZSH_THEME'|g" arch-installer/configuration_zsh/zpreztorc
 
 ### Copy them into the user's folder
-zsh arch-installer/zsh/zsh_setup_configs.sh
+zsh arch-installer/configuration_zsh/zsh_setup_configs.sh
 
 ### Copy prompt theme and .zpreztorc over
-cp arch-installer/zsh/zshrc /mnt/etc/skel/.zshrc
-cp arch-installer/zsh/zpreztorc /mnt/etc/skel/.zpreztorc
-cp arch-installer/zsh/prompt_josh_setup /mnt/etc/skel/.zprezto/modules/prompt/functions/
-cp arch-installer/zsh/prompt_nicholas_setup /mnt/etc/skel/.zprezto/modules/prompt/functions/
-cp arch-installer/zsh/prompt_gideon_setup /mnt/etc/skel/.zprezto/modules/prompt/functions/
+cp arch-installer/configuration_zsh/zshrc /mnt/etc/skel/.zshrc
+cp arch-installer/configuration_zsh/zpreztorc /mnt/etc/skel/.zpreztorc
+cp arch-installer/configuration_zsh/prompt_josh_setup /mnt/etc/skel/.zprezto/modules/prompt/functions/
+cp arch-installer/configuration_zsh/prompt_nicholas_setup /mnt/etc/skel/.zprezto/modules/prompt/functions/
+cp arch-installer/configuration_zsh/prompt_gideon_setup /mnt/etc/skel/.zprezto/modules/prompt/functions/
 
 ### Change the default shell
 sed -i "s|SHELL=/bin/bash|SHELL=/bin/zsh|g" /mnt/etc/default/useradd
