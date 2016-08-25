@@ -14,5 +14,11 @@ then
     arch-chroot /mnt systemctl enable sddm
 
     ### Copy desktop theme file s.t. all users automatically have this
-    cp --parents arch-installer/configuration_desktop/* /mnt/etc/skel/
+    mkdir -p /mnt/etc/skel/.config/
+    mkdir -p /mnt/etc/skel/.local/share/konsole/
+    cp arch-installer/configuration_desktop/.config/kdeglobals /mnt/etc/skel/.config/
+    cp arch-installer/configuration_desktop/.config/konsolerc /mnt/etc/skel/.config/
+    cp arch-installer/configuration_desktop/.config/yakuakerc /mnt/etc/skel/.config/
+    cp arch-installer/configuration_desktop/.local/share/konsole/Default.profile /mnt/etc/skel/.local/share/konsole/Default.profile
+    cp arch-installer/configuration_desktop/.gtkrc-2.0 /mnt/etc/skel/
 fi
