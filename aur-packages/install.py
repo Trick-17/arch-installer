@@ -40,7 +40,7 @@ chdir("install_aur_packages")
 # call("pwd", shell=True)
 
 # Loop over packages
-for package in ["package-query", "yaourt", "visual-studio-code"]:
+for package in ["package-query", "yaourt", "visual-studio-code", "skypeforlinux-bin"]:
     # Build the package
     build_pkg(package)
 
