@@ -22,6 +22,7 @@ pacstrap /mnt base base-devel intel-ucode \
     cmake \
     vim \
     zsh \
+    python-pip \
     powerline-fonts \
     archiso \
     yakuake \
@@ -29,6 +30,10 @@ pacstrap /mnt base base-devel intel-ucode \
     texstudio \
     texlive-most texlive-lang \
     vlc \
+    gimp \
+    inkscape \
+    acroread \
+    teamspeak3 \
     $AUR_DEPENDENCIES \
     $USER_GRAPHICS $USER_DESKTOP
 echo " >> Installed arch packages"
