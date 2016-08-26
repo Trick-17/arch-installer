@@ -12,5 +12,7 @@
 # arch-chroot /mnt yaourt -S visual-studio-code --noconfirm
 # arch-chroot /mnt aura -S visual-studio-code
 
+echo " >> Going to install aur packages"
 cp arch-installer/aur-packages/install.py /mnt/
 arch-chroot /mnt python install.py
+echo " >> Installed aur packages"

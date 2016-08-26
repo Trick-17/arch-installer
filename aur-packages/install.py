@@ -40,7 +40,7 @@ chdir("install_aur_packages")
 # call("pwd", shell=True)
 
 # Loop over packages
-for package in ["package-query", "yaourt", "yakuake-skin-breeze-thin-dark", "visual-studio-code", "skypeforlinux-bin"]:
+for package in ["package-query", "yaourt", "yakuake-skin-breeze-thin-dark", "visual-studio-code", "skypeforlinux-bin", "thunderbird-lightning-bin"]:
     # Build the package
     build_pkg(package)
 

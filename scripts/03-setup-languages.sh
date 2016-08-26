@@ -4,6 +4,7 @@
 source arch-installer/user-input.txt
 
 
+echo " >> Choosing language and keyboard"
 case $USER_LANGUAGE in
 	"DE - Deutschland") 
 	loadkeys de-latin1
@@ -43,10 +44,11 @@ case $USER_LANGUAGE in
 esac
 
 
+echo " >> Setting locale vconsole and keyboard .conf files"
 cp arch-installer/locale.conf /mnt/etc/
 cp arch-installer/vconsole.conf /mnt/etc/
 cp arch-installer/20-keyboard.conf /mnt/etc/X11/xorg.conf.d/
 
 
-
+echo " >> Generating locale"
 arch-chroot /mnt locale-gen

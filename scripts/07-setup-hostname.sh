@@ -3,6 +3,9 @@
 ### Get user input variables
 source arch-installer/user-input.txt
 
+
+echo " >> Setting hostname"
+
 echo $USER_HOSTNAME > /mnt/etc/hostname
 
 sed -i "/^127/ s/$/ ${USER_HOSTNAME}/" /mnt/etc/hosts

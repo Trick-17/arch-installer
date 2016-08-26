@@ -74,7 +74,7 @@ done
 
 
 ###--------- zsh Theme ------------------------------
-echo "Please choose your keyboard-layout and language:"
+echo "Please choose your zsh configuration:"
 select zshtheme in "gideon" "nicholas" "josh" "sorin";
 do
     break

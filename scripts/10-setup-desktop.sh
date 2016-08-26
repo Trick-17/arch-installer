@@ -5,6 +5,8 @@ source arch-installer/user-input.txt
 
 if [ "$USER_DESKTOP" != "none" ]
 then
+    echo " >> Activating Desktop (sddm)"
+
     arch-chroot /mnt sddm --example-config > /mnt/etc/sddm.conf
 
     sed -i 's/Current=maui/Current=breeze/g' /mnt/etc/sddm.conf
@@ -14,6 +16,7 @@ then
     arch-chroot /mnt systemctl enable sddm
 
     ### Copy desktop theme file s.t. all users automatically have this
+    echo " >> Copying Desktop and Shell theme files"
     mkdir -p /mnt/etc/skel/.config/
     mkdir -p /mnt/etc/skel/.local/share/konsole/
     cp arch-installer/configuration_desktop/.config/kdeglobals /mnt/etc/skel/.config/

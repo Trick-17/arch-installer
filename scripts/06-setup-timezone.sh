@@ -3,6 +3,8 @@
 ### Get user input variables
 source arch-installer/user-input.txt
 
+
+echo " >> Choosing Timezone"
 case $USER_TIMEZONE in
     "Deutschland") 
     arch-chroot /mnt ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime
@@ -16,4 +18,5 @@ case $USER_TIMEZONE in
         exit 1
 esac
 
+echo " >> Setting system clock"
 arch-chroot /mnt hwclock --systohc --utc
