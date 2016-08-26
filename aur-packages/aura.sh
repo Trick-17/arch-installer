@@ -20,6 +20,6 @@ setfacl -d --set u::rwx,g::rwx,o::- aura
 
 # Install packages
 cd aura
-sudo -u nobody makepkg # Creates the package
+sudo -u nobody makepkg -s # Creates the package
 sudo pacman -U aura*.pkg.tar.xz --noconfirm # Installs the package
 cd ..

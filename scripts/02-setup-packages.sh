@@ -19,7 +19,6 @@ pacstrap /mnt base base-devel intel-ucode \
     powerline-fonts \
     archiso \
     yakuake \
-    yajl \
     $USER_GRAPHICS $USER_DESKTOP
 
 ### Nicer formatting for pacstrap on installed
