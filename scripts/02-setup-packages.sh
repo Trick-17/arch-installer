@@ -32,7 +32,6 @@ pacstrap /mnt base base-devel intel-ucode \
     vlc \
     gimp \
     inkscape \
-    acroread \
     teamspeak3 \
     $AUR_DEPENDENCIES \
     $USER_GRAPHICS $USER_DESKTOP

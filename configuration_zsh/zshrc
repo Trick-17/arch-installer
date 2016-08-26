@@ -13,5 +13,8 @@ setopt RM_STAR_WAIT
 bindkey '\e[1~' beginning-of-line
 bindkey '\e[4~' end-of-line
 
-# fixes strange cursor position / formating bug
+# Fixes strange cursor position / formating bug
 export LANG=<replace>
+
+# Alias to open with corresponding default program
+alias open=xdg-open
