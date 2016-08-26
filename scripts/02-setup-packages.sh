@@ -7,6 +7,9 @@ source arch-installer/user-input.txt
 sed -i 's/#Color/Color/g' /etc/pacman.conf
 sed -i 's/#TotalDownload/TotalDownload/g' /etc/pacman.conf
 
+### AUR packages dependencies
+AUR_DEPENDENCIES="gconf yajl"
+
 ### Install packages
 pacstrap /mnt base base-devel intel-ucode \
     sudo \
@@ -19,8 +22,11 @@ pacstrap /mnt base base-devel intel-ucode \
     powerline-fonts \
     archiso \
     yakuake \
-    gconf \
-    yajl \
+    thunderbird \
+    texstudio \
+    texlive-most texlive-lang \
+    vlc \
+    $AUR_DEPENDENCIES \
     $USER_GRAPHICS $USER_DESKTOP
 
 ### Nicer formatting for pacstrap on installed
