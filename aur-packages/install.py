@@ -24,7 +24,7 @@ def build_pkg(package):
     chdir(package)
     # call("cd "+package, shell=True)
     # Build package
-    call("sudo -u nobody makepkg -s", shell=True)
+    call("sudo -u nobody makepkg", shell=True)
     # Install package
     call("sudo pacman -U "+package+"*.pkg.tar.xz --noconfirm", shell=True)
     # Go out of package dir
