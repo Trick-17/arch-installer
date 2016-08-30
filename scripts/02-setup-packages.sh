@@ -33,6 +33,8 @@ pacstrap /mnt base base-devel intel-ucode \
     gimp \
     inkscape \
     teamspeak3 \
+    p7zip \
+    unrar \
     $AUR_DEPENDENCIES \
     $USER_GRAPHICS $USER_DESKTOP
 echo " >> Installed arch packages"
