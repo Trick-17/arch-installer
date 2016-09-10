@@ -18,6 +18,7 @@ then
     ### Copy desktop theme file s.t. all users automatically have this
     echo " >> Copying Desktop and Shell theme files"
     mkdir -p /mnt/etc/skel/.config/
+    mkdir -p /mnt/etc/skel/.config/gtk-3.0
     mkdir -p /mnt/etc/skel/.local/share/konsole/
     cp arch-installer/configuration_desktop/.config/kdeglobals /mnt/etc/skel/.config/
     cp arch-installer/configuration_desktop/.config/konsolerc /mnt/etc/skel/.config/
@@ -26,4 +27,5 @@ then
     cp arch-installer/configuration_desktop/.local/share/konsole/Default.profile /mnt/etc/skel/.local/share/konsole/
     cp arch-installer/configuration_desktop/.local/share/konsole/Dark\ Breeze.colorscheme /mnt/etc/skel/.local/share/konsole/
     cp arch-installer/configuration_desktop/.gtkrc-2.0 /mnt/etc/skel/
+    cp arch-installer/configuration_desktop/.config/gtk-3.0/settings.ini /mnt/etc/skel/.config/gtk-3.0/
 fi
