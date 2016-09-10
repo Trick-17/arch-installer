@@ -44,7 +44,7 @@ do
 		break;;
 
         "kde plasma") 
-		desktop="plasma sddm kde-applications kdegraphics-okular firefox"
+		desktop="plasma sddm kde-applications kdegraphics-okular chromium"
 		break;;
 
 	* ) echo "Invalid input. Try again..."
