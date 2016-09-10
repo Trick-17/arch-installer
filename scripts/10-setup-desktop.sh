@@ -22,6 +22,7 @@ then
     cp arch-installer/configuration_desktop/.config/kdeglobals /mnt/etc/skel/.config/
     cp arch-installer/configuration_desktop/.config/konsolerc /mnt/etc/skel/.config/
     cp arch-installer/configuration_desktop/.config/yakuakerc /mnt/etc/skel/.config/
+    cp arch-installer/configuration_desktop/.config/kcminputrc /mnt/etc/skel/.config/
     cp arch-installer/configuration_desktop/.local/share/konsole/Default.profile /mnt/etc/skel/.local/share/konsole/Default.profile
     cp arch-installer/configuration_desktop/.gtkrc-2.0 /mnt/etc/skel/
 fi
