@@ -1,5 +1,5 @@
 [Appearance]
-ColorScheme=DarkPastels
+ColorScheme=Dark Breeze
 
 [Cursor Options]
 CursorShape=2
