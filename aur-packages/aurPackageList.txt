@@ -1,0 +1,7 @@
+package-query
+yaourt
+visual-studio-code
+yakuake-skin-breeze-thin-dark
+skypeforlinux-bin
+thunderbird-lightning-bin
+acroread
