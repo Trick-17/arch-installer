@@ -1,4 +1,3 @@
-package-query
 aura-bin
 visual-studio-code
 yakuake-skin-breeze-thin-dark
