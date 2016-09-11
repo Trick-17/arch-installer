@@ -1,40 +1,57 @@
 Arch Installer
 ==============
 
-This project aims to create an arch distro custom to the authors' needs.
-It is based on archiso and takes inspiration from https://blog.chendry.org/automating-arch-linux-installation/,
-where you may also find some descriptions to the various scripts etc.
+This project aims to provide you with a pure Arch-Linux experience but without the hassle of all the manual installation
+steps one has to perform. Thus this project provides an installation script that performs common installation steps like
+setting up the locale and installing commonly used packages. All packages are installed via the package manager pacman.
+Therefore, after installation you can modify everything to your liking as in a pure arch-linux installation.
+
+The initial inspiration and the concept for this project were taken from this blog: https://blog.chendry.org/automating-arch-linux-installation/. This blog also contains useful information how to create 
+a custom installer medium.
 
 This version will format your partitions and install Arch and download and install
-a set of packages. It is not meant to keep bootloaders or disk formattings etc. intact!
+a set of packages and terminal/desktop styles. It is not meant to keep bootloaders or disk formattings etc. intact!
 
-See also the Arch Beginners Guide from which the developers took helpful information and guidance: https://wiki.archlinux.org/index.php/Beginners%27_guide
+Most of the inital installation steps are quite universal and were taken from the Arch Beginners Guide from which the
+developers took helpful information and guidance: https://wiki.archlinux.org/index.php/Beginners%27_guide. It is always
+a useful source, especially if you want to fork this project to modify it to your needs.
 
 
 Using this repository
 =====================
 
-Clone the repository and cd to *repo/releng*. Now execute
+## Using archiso
+Clone this repository to a folder of your choice. Then install the archiso package on your machine. 
+Copy the archiso files as described in https://blog.chendry.org/automating-arch-linux-installation/. 
+Then copy the files in the folder `releng` to where you copied the archiso files before overwriting existing files.
 
     sudo ./build.sh -v
 
-An iso will be generated in the folder *repo/relelng/out*.
+An iso will be generated in the folder `repo/relelng/out`.
 Booting a machine using this iso will land you in Arch's zsh-shell.
 If *autorun.sh* executes on startup, you only need to answer the questions it asks.
-Otherwise, call it yourself manually.
+Otherwise, call it yourself manually with `./autorun.sh`. Note that the keyboard layout is US so in case you have
+a different keyboard layout you have to look up the mapping for the `./`.
 
-*autorun.sh* simply calls *install.sh*, which in turn calls the various installation scripts one after another.
+## Using a default arch iso file
+Follow these steps if you don't want to create a custom iso
+* Download the latest arch-linux iso file from a source you trust
+* Boot it up
+* Install the package `git`
+* Clone this repository
 
-**Note** that the installation requires a partition called *Arch*, since this procedure is primarily
-intended for re-installation onto a pre-existing partition. You may thus have to `mkpart` beforehand.
-Also note that for *autorun.sh* to run automatically you need EFI startup.
+Finally call
 
-### A few necessary steps
-In order for the *autorun.sh* script to work (specifically the *02-setup-partitions* script), you need to have
-two partitions, named **EFI** and **Arch** respectively. If you are re-installing, and the partitions
-already exist, you need not repeat this.
+    sh <repository-folder>/install.sh
 
-The developers used the following to prepare the disk:
+## Partitions
+> The installation requires a partition called *Arch*, since this procedure is primarily
+> intended for re-installation onto a pre-existing partition. You may thus have to `mkpart` beforehand.
+> Also note that an `EFI` partition is required.
+> If you want to avoid overriding your partitions you have to modify the `02-setup-partitions` script in
+> the scripts folder.
+
+The following can be used to prepare the disk:
 
     parted
 
@@ -50,93 +67,8 @@ The developers used the following to prepare the disk:
 
 For more information see https://wiki.archlinux.org/index.php/GNU_Parted#UEFI.2FGPT_examples
 
-### After the autorun script
-Note that currently, to run the desktop, you need to manually run
 
-    arch-chroot /mnt
-    systemctl enable sddm
-    exit
-
-If you are using VirtualBox, be aware that EFI needs to be activated (Settings -> System) and nested paging
-needs to be deactivated (Settings -> System -> Processor).
-
-
-
-Building your own repository
-============================
-
-Archiso
--------
-
-Install archiso with
-
-    sudo pacman -S archiso
-
-You may start out with *baseline* or *releng*, this repository uses the latter.
-To start with a clean new folder, copy it with
-
-    cp /usr/share/archiso/configs/releng ~/arch-installer
-    cd ~/arch-installer
-    git init
-    git commit -am "initial commit"
-
-Running `build.sh` will fill the `work` and `out` folder, which is why they should be in your `.gitignore`.
-
-As the installation scripts will require `git`, add it to the `packages.both` file.
-Now run
-
-    sudo ./build.sh -v
-
-This will create an .iso in the /out subdirectory of the repo.
-You may use dd to write this to a USB disk, e.g.:
-
-    dd if=out/archlinux-2015.01.30-dual.iso of=/dev/sd_ bs=2M
-
-**Booting from this image will land you in Arch's zsh-shell**.
-
-Arch iso root filesystem
-------------------------
-
-The files in the folder *releng/airootfs* will be available to you in the root folder
-when starting your live arch image.
-
-autorun.sh
-----------
-Take a look at the /airootfs/root/.automated_script.sh file.
-When the live system boots, the root user is automatically logged on, and this script is automatically executed.
-The script looks at the options passed to the kernel (/proc/cmdline) and executes whatever is passed as the “script” parameter.
-
-In */efiboot/loader/entries/archiso-x86_64-cd.conf*, you need to modify the last line:
-
-    options archisobasedir=%INSTALL_DIR% archisolabel=%ARCHISO_LABEL% script=autorun.sh
-
-Create a script *autorun.sh* in
-
-    #!/bin/bash
-    echo "hello, world"
-
-Now, if you rebuild and boot from the ISO, it will automatically run the autorun.sh script and you’ll see “hello, world” output.
-
-**Note**: you’ll need to clear out the /work directory before rebuilding.
-
-Cloning and running the installation scripts
---------------------------------------------
-Clone the repo with
-    
-    git clone https://github.com/GMueller/arch-installer
-
-Installation Scripts
---------------------
-### 01-setup-partitions.sh
-Use the prepared 'EFI' and 'Arch' partition labels to mount the partitions.
-### 02-setup-packages.sh
-Select the packages that should be installed, providing options for graphics drivers and desktop.
-### 03-setup-keyboard.sh
-### 04-setup-locale.sh
-### 05-setup-bootloader.sh
-### 06-setup-fstab.sh
-### 07-setup-timezome.sh
-### 08-setup-hostname.sh
-### 09-setup-network.sh
-### 10-setup-sshd.sh
-### 11-setup-users.sh
+## VirtualBox
+If you are using VirtualBox, be aware.
+> - EFI needs to be activated (Settings -> System) 
+> - nested paging needs to be deactivated (Settings -> System -> Processor).
