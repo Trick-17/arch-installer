@@ -25,6 +25,7 @@ pacstrap /mnt base base-devel intel-ucode \
     vim \
     zsh \
     python-pip \
+    ipython \
     powerline-fonts \
     archiso \
     yakuake \
