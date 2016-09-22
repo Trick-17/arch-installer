@@ -33,17 +33,6 @@ If *autorun.sh* executes on startup, you only need to answer the questions it as
 Otherwise, call it yourself manually with `./autorun.sh`. Note that the keyboard layout is US so in case you have
 a different keyboard layout you have to look up the mapping for the `./`.
 
-## Using a default arch iso file
-Follow these steps if you don't want to create a custom iso
-* Download the latest arch-linux iso file from a source you trust
-* Boot it up
-* Install the package `git`
-* Clone this repository
-
-Finally call
-
-    sh <repository-folder>/install.sh
-
 ## Partitions
 > The installation requires a partition called *Arch*, since this procedure is primarily
 > intended for re-installation onto a pre-existing partition. You may thus have to `mkpart` beforehand.
