@@ -1,26 +1,42 @@
-from subprocess import Popen
 from subprocess import call
 from os import chdir
 import tarfile
 
+##
+## Install Aura
 
-def install_pkg(package):
-    # Go into package dir
-    chdir(package)
-    # Install package
-    call("pacman -U "+package+"*.pkg.tar.xz --noconfirm", shell=True)
-    # Go out of package dir
-    chdir("..")
+# Download tar-ball
+call("wget https://aur.archlinux.org/cgit/aur.git/snapshot/aura.tar.gz", shell=True)
+
+# Exctract archive
+tar = tarfile.open("aura.tar.gz")
+tar.extractall()
+tar.close()
+
+# Go into package dir
+chdir("aura")
+# Build package
+call("makepkg", shell=True)
+# Go out of package dir
+chdir("..")
+
+
+# Go into package dir
+chdir("aura")
+# Call installer for package
+call("sudo pacman -U aura*.pkg.tar.xz --noconfirm", shell=True)
+# Go out of package dir
+chdir("..")
 
 
 
+##
+## Use Aura to install the rest of the packages
 
-# Loop over packages
+# Open list of packages
 with open('aurPackageList.txt') as f:
-    chdir("install")
+    # Make list of packages to install
     packages = [line.strip() for line in f]
+    # Call installer for each package
     for package in packages:
-        install_pkg(package)
-
-# Note: vs code depends on gconf
-#       yaourt depends on yajl
+        call("sudo aura -A "+package+"*.pkg.tar.xz --noconfirm", shell=True)

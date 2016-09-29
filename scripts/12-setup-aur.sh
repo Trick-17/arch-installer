@@ -13,6 +13,11 @@
 # arch-chroot /mnt aura -S visual-studio-code
 
 echo " >> Going to install aur packages"
-cp arch-installer/aur-packages/install.py /mnt/
-arch-chroot /mnt python install.py
+cp -r arch-installer/aur-packages/. /mnt/
+
+arch-chroot /mnt sh createFakeUser.sh
+arch-chroot /mnt su -u installer python installAurPackages.py
+arch-chroot /mnt sh removeFakeUser.sh
+
+rm /mnt/aurPackageList.txt /mnt/createFakeUser.sh /mnt/installAurPackages.py /mnt/removeFakeUser..sh
 echo " >> Installed aur packages"
