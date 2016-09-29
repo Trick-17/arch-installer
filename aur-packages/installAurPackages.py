@@ -6,6 +6,7 @@ import tarfile
 ## Install Aura
 
 # Download tar-ball
+chdir("~")
 call("wget https://aur.archlinux.org/cgit/aur.git/snapshot/aura.tar.gz", shell=True)
 
 # Exctract archive
@@ -17,12 +18,6 @@ tar.close()
 chdir("aura")
 # Build package
 call("makepkg", shell=True)
-# Go out of package dir
-chdir("..")
-
-
-# Go into package dir
-chdir("aura")
 # Call installer for package
 call("sudo pacman -U aura*.pkg.tar.xz --noconfirm", shell=True)
 # Go out of package dir
