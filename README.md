@@ -33,6 +33,17 @@ If *autorun.sh* executes on startup, you only need to answer the questions it as
 Otherwise, call it yourself manually with `./autorun.sh`. Note that the keyboard layout is US so in case you have
 a different keyboard layout you have to look up the mapping for the `./`.
 
+
+## Using a vanilla iso (untested)
+Load the iso. Without changing directory download the repository
+
+    curl -o arch-installer -sL https://github.com/GPMueller/arch-installer/archive/<sha1-or-ref>.tar.gz | tar xz
+
+Where you replace the `<sha1-or-ref>` with either a commit or a version label. Next call the install scprict
+
+    sh arch-installer/install.sh
+    
+    
 ## Partitions
 > The installation requires a partition called *Arch*, since this procedure is primarily
 > intended for re-installation onto a pre-existing partition. You may thus have to `mkpart` beforehand.
