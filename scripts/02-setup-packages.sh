@@ -29,13 +29,7 @@ pacstrap /mnt base base-devel intel-ucode \
     powerline-fonts \
     archiso \
     yakuake \
-    thunderbird \
-    texstudio \
     texlive-most texlive-lang \
-    vlc \
-    gimp \
-    inkscape \
-    teamspeak3 \
     p7zip \
     unrar \
     boost \

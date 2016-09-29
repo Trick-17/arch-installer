@@ -34,17 +34,20 @@ done
 ###--------------------------------------------------
 
 
-###--------- Graphics -------------------------------
+###--------- Desktop --------------------------------
+desktoppackages="chromium thunderbird texstudio gimp inkscape vlc teamspeak3 owncloud-client"
+###
 echo "Please select the desktop you want to install"
 select yn in "none" "kde plasma";
 do 
     case $yn in
         "none")
         desktop="none"
+        desktoppackages=""
 		break;;
 
         "kde plasma") 
-		desktop="plasma sddm kde-applications chromium"
+		desktop="plasma sddm kde-applications $desktoppackages"
 		break;;
 
 	* ) echo "Invalid input. Try again..."
