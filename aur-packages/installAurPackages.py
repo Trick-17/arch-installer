@@ -6,7 +6,7 @@ import tarfile
 ## Install Aura
 
 # Download tar-ball
-chdir("~")
+chdir("/home/installer")
 call("wget https://aur.archlinux.org/cgit/aur.git/snapshot/aura.tar.gz", shell=True)
 
 # Exctract archive
