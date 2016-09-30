@@ -7,19 +7,19 @@ import tarfile
 
 # Download tar-ball
 chdir("/home/installer")
-call("wget https://aur.archlinux.org/cgit/aur.git/snapshot/aura.tar.gz", shell=True)
+call("wget https://aur.archlinux.org/cgit/aur.git/snapshot/aura-bin.tar.gz", shell=True)
 
 # Exctract archive
-tar = tarfile.open("aura.tar.gz")
+tar = tarfile.open("aura-bin.tar.gz")
 tar.extractall()
 tar.close()
 
 # Go into package dir
-chdir("aura")
+chdir("aura-bin")
 # Build package
 call("makepkg", shell=True)
 # Call installer for package
-call("sudo pacman -U aura*.pkg.tar.xz --noconfirm", shell=True)
+call("sudo pacman -U aura-bin*.pkg.tar.xz --noconfirm", shell=True)
 # Go out of package dir
 chdir("..")
 
