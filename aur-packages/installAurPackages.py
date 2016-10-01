@@ -34,4 +34,4 @@ with open('aurPackageList.txt') as f:
     packages = [line.strip() for line in f]
     # Call installer for each package
     for package in packages:
-        call("sudo aura -A "+package+"*.pkg.tar.xz --noconfirm", shell=True)
+        call("sudo aura -A "+package+" --noconfirm", shell=True)
