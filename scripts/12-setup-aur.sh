@@ -27,7 +27,7 @@ arch-chroot /mnt sudo -u installer python /home/installer/installAurPackages.py
 
 # Remove fake install user
 arch-chroot /mnt userdel installer
-sed -i '|installer ALL=(ALL) NOPASSWD: ALL|d' /mnt/etc/sudoers
+sed -i '/installer ALL=(ALL) NOPASSWD: ALL/d' /mnt/etc/sudoers
 rm -rf /mnt/home/installer
 
 echo " >> Installed aur packages"
