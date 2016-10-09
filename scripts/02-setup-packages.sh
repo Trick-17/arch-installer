@@ -36,6 +36,8 @@ pacstrap /mnt base base-devel intel-ucode \
     eigen \
     python-h5py \
     hdf5-cpp-fortran \
+    doxygen \
+    xclip \
     $AUR_DEPENDENCIES \
     $USER_GRAPHICS $USER_DESKTOP
 echo " >> Installed arch packages"
