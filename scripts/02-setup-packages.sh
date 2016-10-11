@@ -39,6 +39,8 @@ pacstrap /mnt base base-devel intel-ucode \
     doxygen \
     xclip \
     graphviz \
+    tree \
+    filezilla \
     $AUR_DEPENDENCIES \
     $USER_GRAPHICS $USER_DESKTOP
 echo " >> Installed arch packages"
