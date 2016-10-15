@@ -28,6 +28,8 @@ cp arch-installer/configuration_zsh/prompt_josh_setup /mnt/etc/skel/.zprezto/mod
 cp arch-installer/configuration_zsh/prompt_nicholas_setup /mnt/etc/skel/.zprezto/modules/prompt/functions/
 cp arch-installer/configuration_zsh/prompt_gideon_setup /mnt/etc/skel/.zprezto/modules/prompt/functions/
 
+### Copy Vim-config
+cp arch-installer/configuration_zsh/.vimrc /mnt/etc/skel/
 
 ### Change the default shell
 echo " >> Changing default shell to zsh"
