@@ -12,7 +12,8 @@ sed -i 's/#TotalDownload/TotalDownload/g' /etc/pacman.conf
 # vs code needs gconf
 # aura-bin needs abs
 # AUR_DEPENDENCIES="gconf yajl abs"
-AUR_DEPENDENCIES="gconf abs"
+# AUR_DEPENDENCIES="gconf abs"
+AUR_DEPENDENCIES="abs"
 
 ### Install packages
 echo " >> Going to install arch packages"
