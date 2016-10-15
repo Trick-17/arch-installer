@@ -141,6 +141,7 @@ DisabledValue=1
 Size=32
 
 [General]
+BrowserApplication[$e]=chromium.desktop
 ColorScheme=Breeze Dark
 Name=Breeze Dark
 fixed=Droid Sans Mono for Powerline,11,-1,5,50,0,0,0,0,0
