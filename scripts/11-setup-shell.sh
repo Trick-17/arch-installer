@@ -16,7 +16,7 @@ echo " >> Installing zsh with prezto"
 git clone --recursive https://github.com/sorin-ionescu/prezto.git /mnt/etc/skel/.zprezto
 
 ### Set correct theme
-sed -i "s|theme '<replace>'|theme '$USER_ZSH_THEME'|g" arch-installer/configuration_zsh/zpreztorc
+# sed -i "s|theme '<replace>'|theme '$USER_ZSH_THEME'|g" arch-installer/configuration_zsh/zpreztorc
 
 ### Copy them into the user's folder
 zsh arch-installer/configuration_zsh/zsh_setup_configs.sh
@@ -24,9 +24,7 @@ zsh arch-installer/configuration_zsh/zsh_setup_configs.sh
 ### Copy prompt theme and .zpreztorc over
 cp arch-installer/configuration_zsh/zshrc /mnt/etc/skel/.zshrc
 cp arch-installer/configuration_zsh/zpreztorc /mnt/etc/skel/.zpreztorc
-cp arch-installer/configuration_zsh/prompt_josh_setup /mnt/etc/skel/.zprezto/modules/prompt/functions/
-cp arch-installer/configuration_zsh/prompt_nicholas_setup /mnt/etc/skel/.zprezto/modules/prompt/functions/
-cp arch-installer/configuration_zsh/prompt_gideon_setup /mnt/etc/skel/.zprezto/modules/prompt/functions/
+cp arch-installer/configuration_zsh/prompt_plasmon_setup /mnt/etc/skel/.zprezto/modules/prompt/functions/
 
 ### Copy Vim-config
 cp arch-installer/configuration_zsh/.vimrc /mnt/etc/skel/

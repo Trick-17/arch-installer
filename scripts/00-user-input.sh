@@ -76,15 +76,6 @@ done
 ###--------------------------------------------------
 
 
-###--------- zsh Theme ------------------------------
-echo "Please choose your zsh configuration:"
-select zshtheme in "gideon" "nicholas" "josh" "sorin";
-do
-    break
-done
-###--------------------------------------------------
-
-
 ###--------- Hostname -------------------------------
 echo "Please type in a hostname (lowercase!):"
 read -p 'Hostname: ' hostname
