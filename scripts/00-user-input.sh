@@ -7,23 +7,23 @@ select yn in "default" "intel" "nvidia" "amd" "vbox";
 do
     case $yn in
         "default") 
-        graphics="mesa mesa-libgl xf86-video-vesa"
+        graphics="mesa mesa-libgl xf86-video-vesa opencl-mesa"
 		break;;
 
         "intel") 
-		graphics="mesa mesa-libgl xf86-video-intel"
+		graphics="mesa mesa-libgl xf86-video-intel opencl-mesa"
 		break;;
 
         "nvidia") 
-		graphics="nvidia nvidia-libgl"
+		graphics="nvidia nvidia-libgl opencl-nvidia"
 		break;;
 
         "amd") 
-        graphics="mesa mesa-libgl xf86-video-vesa"
+        graphics="mesa mesa-libgl xf86-video-vesa opencl-mesa"
 		break;;
 
         "vbox") 
-        graphics="virtualbox-guest-modules-arch virtualbox-guest-utils"
+        graphics="virtualbox-guest-modules-arch virtualbox-guest-utils opencl-mesa"
 		break;;
 
 	* ) echo "Invalid input. Try again..."

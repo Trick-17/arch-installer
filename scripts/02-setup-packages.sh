@@ -42,6 +42,8 @@ pacstrap /mnt base base-devel intel-ucode \
     graphviz \
     tree \
     filezilla \
+    ocl-icd \
+    opencl-headers \
     $AUR_DEPENDENCIES \
     $USER_GRAPHICS $USER_DESKTOP
 echo " >> Installed arch packages"
