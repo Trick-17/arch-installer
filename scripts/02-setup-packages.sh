@@ -44,6 +44,10 @@ pacstrap /mnt base base-devel intel-ucode \
     filezilla \
     ocl-icd \
     opencl-headers \
+    openmpi \
+    python-scipy \
+    python-matplotlib \
+    python-pillow \
     $AUR_DEPENDENCIES \
     $USER_GRAPHICS $USER_DESKTOP
 echo " >> Installed arch packages"
