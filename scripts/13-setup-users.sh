@@ -7,7 +7,7 @@ arch-chroot /mnt useradd -m -G wheel -s /bin/bash $USER_USERNAME
 echo "Please type in a password for ${USER_USERNAME}:"
 arch-chroot /mnt passwd $USER_USERNAME
 
-echo "Please type in a password for `root` user:"
+echo "Please type in a password for root user:"
 arch-chroot /mnt passwd
 
 ### Place the user into the sudoers list
