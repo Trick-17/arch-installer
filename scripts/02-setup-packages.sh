@@ -49,6 +49,7 @@ pacstrap /mnt base base-devel intel-ucode \
     python-matplotlib \
     python-pillow \
     qtox \
+    gnuplot \
     $AUR_DEPENDENCIES \
     $USER_GRAPHICS $USER_DESKTOP
 echo " >> Installed arch packages"
