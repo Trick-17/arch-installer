@@ -51,6 +51,7 @@ pacstrap /mnt base base-devel intel-ucode \
     qtox \
     gnuplot \
     fortune-mod \
+    python-pylint \
     $AUR_DEPENDENCIES \
     $USER_GRAPHICS $USER_DESKTOP
 echo " >> Installed arch packages"
