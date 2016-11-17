@@ -34,20 +34,82 @@ done
 ###--------------------------------------------------
 
 
+###--------- Packages -------------------------------
+mindesktoppackages="yakuake"
+fulldesktoppackages="chromium thunderbird texstudio gimp inkscape vlc teamspeak3 owncloud-client"
+serverdesktoppackages=""
+
+minpackages="base base-devel intel-ucode \
+            sudo \
+            wget \
+            openssh \
+            git \
+            vim \
+            zsh \
+            powerline-fonts \
+            archiso \
+            p7zip \
+            unrar \
+            xclip \
+            fortune-mod"
+extrapackages="cmake \
+                boost \
+                eigen \
+                ocl-icd \
+                opencl-headers \
+                openmpi \
+                hdf5-cpp-fortran \
+                python-pip \
+                ipython \
+                python-h5py \
+                python-scipy \
+                python-matplotlib \
+                python-pillow \
+                python-pylint \
+                tree"
+packages_selected=""
+echo "Please choose your set of packages:"
+select yn in "desktop full" "desktop minimal" "server";
+do
+    case $yn in
+        "desktop full") 
+        packages="$minpackages $extrapackages texlive-most texlive-lang doxygen graphviz filezilla qtox gnuplot"
+        packages_selected=yn
+		break;;
+
+        "desktop minimal")
+        packages="$minpackages"
+        fulldesktoppackages=""
+        packages_selected=yn
+		break;;
+
+        "server") 
+		packages="$minpackages $extrapackages"
+        packages_selected=yn
+		break;;
+
+	* ) echo "Invalid input. Try again..."
+        exit 1
+    esac
+    break
+done
+###--------------------------------------------------
+
+
 ###--------- Desktop --------------------------------
-desktoppackages="chromium thunderbird texstudio gimp inkscape vlc teamspeak3 owncloud-client"
-###
+
 echo "Please select the desktop you want to install"
 select yn in "none" "kde plasma";
 do 
     case $yn in
         "none")
-        desktop="none"
         desktoppackages=""
+        desktop_selected=yn
 		break;;
 
-        "kde plasma") 
-		desktop="plasma sddm kde-applications $desktoppackages"
+        "kde plasma")
+        desktoppackages="plasma sddm kde-applications $mindesktoppackages $fulldesktoppackages $serverdesktoppackages"
+        desktop_selected=yn
 		break;;
 
 	* ) echo "Invalid input. Try again..."
@@ -88,8 +150,12 @@ read -p 'Username: ' username
 ###--------------------------------------------------
 
 
+### Save the input in user-input.txt so we can read it back in later
 echo "USER_GRAPHICS=\"$graphics\"" >> arch-installer/user-input.txt
-echo "USER_DESKTOP=\"$desktop\"" >> arch-installer/user-input.txt
+echo "USER_PACKAGES=\"$packages\"" >> arch-installer/user-input.txt
+echo "USER_PACKAGES_SELECTED=\"$packages_selected\"" >> arch-installer/user-input.txt
+echo "USER_DESKTOP=\"$desktoppackages\"" >> arch-installer/user-input.txt
+echo "USER_DESKTOP_SELECTED=\"$desktop_selected\"" >> arch-installer/user-input.txt
 echo "USER_LANGUAGE=\"$language\"" >> arch-installer/user-input.txt
 echo "USER_TIMEZONE=\"$timezone\"" >> arch-installer/user-input.txt
 echo "USER_ZSH_THEME=\"$zshtheme\"" >> arch-installer/user-input.txt

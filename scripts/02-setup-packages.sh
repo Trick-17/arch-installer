@@ -20,43 +20,9 @@ AUR_DEPENDENCIES="abs"
 
 ### Install packages
 echo " >> Going to install arch packages"
-pacstrap /mnt base base-devel intel-ucode \
-    sudo \
-    wget \
-    openssh \
-    git \
-    cmake \
-    vim \
-    zsh \
-    python-pip \
-    ipython \
-    powerline-fonts \
-    archiso \
-    yakuake \
-    texlive-most texlive-lang \
-    p7zip \
-    unrar \
-    boost \
-    eigen \
-    python-h5py \
-    hdf5-cpp-fortran \
-    doxygen \
-    xclip \
-    graphviz \
-    tree \
-    filezilla \
-    ocl-icd \
-    opencl-headers \
-    openmpi \
-    python-scipy \
-    python-matplotlib \
-    python-pillow \
-    qtox \
-    gnuplot \
-    fortune-mod \
-    python-pylint \
-    $AUR_DEPENDENCIES \
-    $USER_GRAPHICS $USER_DESKTOP
+pacstrap /mnt $USER_PACKAGES \    
+              $AUR_DEPENDENCIES \
+              $USER_GRAPHICS $USER_DESKTOP
 echo " >> Installed arch packages"
 
 ### Nicer formatting for pacstrap on installed
