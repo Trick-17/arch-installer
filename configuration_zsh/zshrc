@@ -19,6 +19,10 @@ export LANG=<replace>
 # Alias to open with corresponding default program
 alias open=xdg-open
 
+# Set vim as the editor for GIT commit and all other programs
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
 logo="\e[H\e[2J 
           \e[1;36m. 
          \e[1;36m/#\\      \e[1;37m          _      \e[1;36m _ _     
