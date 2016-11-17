@@ -21,25 +21,35 @@ Using this repository
 =====================
 
 ## Using archiso
-Clone this repository to a folder of your choice. Then install the archiso package on your machine. 
-Copy the archiso files as described in https://blog.chendry.org/automating-arch-linux-installation/. 
-Then copy the files in the folder `releng` to where you copied the archiso files before overwriting existing files.
+Switch to a folder of your choice and execute the following commands:
 
+    sudo pacman -S archiso
+    git clone https://github.com/GPMueller/arch-installer.git
+    cp -r /usr/share/archiso/configs/releng ~/arch-installer-iso
+    cp -rf arch-installer/releng arch-installer-iso
+Then to build switch into the folder and call the build script:
+
+    cd arch-installer-iso
     sudo ./build.sh -v
 
+(see also https://blog.chendry.org/automating-arch-linux-installation/).
+Note you may also use the folder `baseline` instead of `releng`.
 An iso will be generated in the folder `repo/relelng/out`.
+
 Booting a machine using this iso will land you in Arch's zsh-shell.
-If you do not have the partitions set up look into the section *Partitions*. Otherwise call `./autorun.sh`. Note that the keyboard layout is US so in case you have a different keyboard layout you have to look up the mapping for the `./`.
+If you do not have the partitions set up look into the section [Partitions](#Partitions).
+Otherwise call `./autorun.sh` to install Arch.
+> Note that the keyboard layout is US so in case you have a different keyboard layout you have to look up the mapping for the `./`.
 
 
-## Partitions
-> The installation requires a partition called *Arch*, since this procedure is primarily
-> intended for re-installation onto a pre-existing partition. You may thus have to `mkpart` beforehand.
-> Also note that an `EFI` partition is required.
-> If you want to avoid overriding your partitions you have to modify the `02-setup-partitions` script in
-> the scripts folder.
+## Partitions  <a name="Partitions"></a>
+The installation requires a partition called *Arch*, since this procedure is primarily
+intended for re-installation onto a pre-existing partition. You may thus have to `mkpart` beforehand.
+Also note that an `EFI` partition is required.
+If you want to avoid overriding your partitions you have to modify the `02-setup-partitions` script in
+the scripts folder.
 
-The following can be used to prepare the disk:
+The following or variations of it can be used to prepare the disk:
 
     parted
 
@@ -53,6 +63,7 @@ The following can be used to prepare the disk:
     mkfs.fat -F32 /dev/sda1
     fatlabel /dev/sda1 EFI
 
+Alternatively you can manually call `./prepare_disk.sh`.
 For more information see https://wiki.archlinux.org/index.php/GNU_Parted#UEFI.2FGPT_examples
 
 
