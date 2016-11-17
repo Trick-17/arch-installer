@@ -7,6 +7,9 @@ source arch-installer/user-input.txt
 sed -i 's/#Color/Color/g' /etc/pacman.conf
 sed -i 's/#TotalDownload/TotalDownload/g' /etc/pacman.conf
 
+### Update mirrorlist
+reflector --verbose --latest 40 --sort rate --protocol https --save /etc/pacman.d/mirrorlist
+
 ### AUR packages dependencies
 # yaourt needs yajl
 # vs code needs gconf
