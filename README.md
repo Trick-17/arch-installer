@@ -25,9 +25,8 @@ Switch to a folder of your choice and execute the following commands:
 
     sudo pacman -S archiso
     git clone https://github.com/GPMueller/arch-installer.git
-    mkdir arch-installer-iso
-    cp -r /usr/share/archiso/configs/releng/. arch-installer-iso/
-    /bin/cp -rf arch-installer/releng/. arch-installer-iso/
+    cp -r /usr/share/archiso/configs/releng/. arch-installer-iso
+    /bin/cp -rf arch-installer/releng/. arch-installer-iso
 Then to build switch into the folder and call the build script:
 
     cd arch-installer-iso
