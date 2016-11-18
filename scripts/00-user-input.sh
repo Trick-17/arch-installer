@@ -39,34 +39,8 @@ mindesktoppackages="yakuake"
 fulldesktoppackages="chromium thunderbird texstudio gimp inkscape vlc teamspeak3 owncloud-client"
 serverdesktoppackages=""
 
-minpackages="base base-devel intel-ucode \
-            sudo \
-            wget \
-            openssh \
-            git \
-            vim \
-            zsh \
-            powerline-fonts \
-            archiso \
-            p7zip \
-            unrar \
-            xclip \
-            fortune-mod"
-extrapackages="cmake \
-                boost \
-                eigen \
-                ocl-icd \
-                opencl-headers \
-                openmpi \
-                hdf5-cpp-fortran \
-                python-pip \
-                ipython \
-                python-h5py \
-                python-scipy \
-                python-matplotlib \
-                python-pillow \
-                python-pylint \
-                tree"
+minpackages="base base-devel intel-ucode sudo wget openssh git vim zsh powerline-fonts archiso p7zip unrar xclip fortune-mod"
+extrapackages="cmake boost eigen ocl-icd opencl-headers openmpi hdf5-cpp-fortran python-pip ipython python-h5py python-scipy python-matplotlib python-pillow python-pylint tree"
 packages_selected=""
 echo "Please choose your set of packages:"
 select yn in "desktop full" "desktop minimal" "server";
