@@ -183,7 +183,7 @@ AUR_DEPENDENCIES="abs"
 ### Install packages
 echo " >> Going to install arch packages"
 pacstrap /mnt base base-devel intel-ucode \
-              sudo wget openssh git vim zsh powerline-fonts archiso p7zip unrar xclip fortune-mod \
+              sudo wget openssh git vim zsh powerline-fonts archiso p7zip unrar xclip fortune-mod reflector \
               $packages_user $packages_graphics abs
 echo " >> Installed arch packages"
 
