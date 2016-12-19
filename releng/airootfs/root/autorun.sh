@@ -17,7 +17,7 @@ echo "done."
 echo "---"
 echo " "
 echo "Downloading install-scripts... "
-git clone https://github.com/GPMueller/arch-installer.git
+git clone https://github.com/Trick-17/arch-installer.git
 echo "done."
 echo "---"
 echo " "
