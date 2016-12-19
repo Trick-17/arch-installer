@@ -24,7 +24,7 @@ Using this repository
 Switch to a folder of your choice and execute the following commands:
 
     sudo pacman -S archiso
-    git clone https://github.com/GPMueller/arch-installer.git
+    git clone https://github.com/Trick-17/arch-installer.git
     cd releng
     sh createIso.sh
     
