@@ -40,51 +40,51 @@ case $USER_SYSTEM in
         case $USER_DESKTOP in
             "none") 
             packages_user=$packages_desktop_full_nogui
-            break;;
+            ;;
 
             "kde plasma") 
             packages_user="plasma sddm kde-applications $packages_desktop_full_gui"
-            break;;
+            ;;
 
         * ) echo "Invalid USER_DESKTOP. Try again..."
             exit 1
         esac
-        break;;
+        ;;
 
         "developer") 
         case $USER_DESKTOP in
             "none") 
             packages_user=$packages_desktop_developer_nogui
-            break;;
+            ;;
 
             "kde plasma") 
             packages_user="plasma sddm kde-applications $packages_desktop_developer_gui"
-            break;;
+            ;;
 
         * ) echo "Invalid USER_DESKTOP. Try again..."
             exit 1
         esac
-        break;;
+        ;;
 
         "minimal") 
         case $USER_DESKTOP in
             "none") 
             packages_user=""
-            break;;
+            ;;
 
             "kde plasma") 
             packages_user="plasma sddm kde-applications"
-            break;;
+            ;;
 
         * ) echo "Invalid USER_DESKTOP. Try again..."
             exit 1
         esac
-        break;;
+        ;;
 
     * ) echo "Invalid USER_PACKAGES. Try again..."
         exit 1
     esac
-    break;;
+    ;;
 
     "server") 
     case $USER_PACKAGES in
@@ -92,51 +92,51 @@ case $USER_SYSTEM in
         case $USER_DESKTOP in
             "none") 
             packages_user=$packages_server_full_nogui
-            break;;
+            ;;
 
             "kde plasma") 
             packages_user="plasma sddm kde-applications $packages_server_full_gui"
-            break;;
+            ;;
 
         * ) echo "Invalid USER_DESKTOP. Try again..."
             exit 1
         esac
-        break;;
+        ;;
 
         "developer") 
         case $USER_DESKTOP in
             "none") 
             packages_user=$packages_server_developer_nogui
-            break;;
+            ;;
 
             "kde plasma") 
             packages_user="plasma sddm kde-applications $packages_server_developer_gui"
-            break;;
+            ;;
 
         * ) echo "Invalid USER_DESKTOP. Try again..."
             exit 1
         esac
-        break;;
+        ;;
 
         "minimal") 
         case $USER_DESKTOP in
             "none") 
             packages_user=""
-            break;;
+            ;;
 
             "kde plasma") 
             user_packages="plasma sddm kde-applications"
-            break;;
+            ;;
 
         * ) echo "Invalid USER_DESKTOP. Try again..."
             exit 1
         esac
-        break;;
+        ;;
 
     * ) echo "Invalid USER_PACKAGES. Try again..."
         exit 1
     esac
-    break;;
+    ;;
 
 * ) echo "Invalid USER_SYSTEM. Try again..."
     exit 1
@@ -147,23 +147,23 @@ packages_graphics=""
 case $USER_GRAPHICS in
     "default") 
     packages_graphics="mesa mesa-libgl xf86-video-vesa opencl-mesa"
-    break;;
+    ;;
 
     "intel") 
     packages_graphics="mesa mesa-libgl xf86-video-intel opencl-mesa"
-    break;;
+    ;;
 
     "nvidia") 
     packages_graphics="nvidia nvidia-libgl opencl-nvidia"
-    break;;
+    ;;
 
     "amd") 
     packages_graphics="mesa mesa-libgl xf86-video-vesa opencl-mesa"
-    break;;
+    ;;
 
     "vbox") 
     packages_graphics="virtualbox-guest-modules-arch virtualbox-guest-utils opencl-mesa"
-    break;;
+    ;;
 
 * ) echo "Invalid USER_GRAPHICS. Try again..."
     exit 1
