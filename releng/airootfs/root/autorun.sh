@@ -18,6 +18,21 @@ echo "---"
 echo " "
 echo "Downloading install-scripts... "
 git clone https://github.com/Trick-17/arch-installer.git
+while [[ $# -gt 1 ]]
+do
+    key="$1"
+
+    case $key in
+        -c|--commit)
+        cd arch-installer && git checkout $2 && cd ..
+        shift # past argument
+        ;;
+        *)
+                # unknown option
+        ;;
+    esac
+    shift # past argument or value
+done
 echo "done."
 echo "---"
 echo " "
