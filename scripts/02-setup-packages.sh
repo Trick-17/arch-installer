@@ -43,7 +43,7 @@ case $USER_SYSTEM in
             ;;
 
             "kde plasma") 
-            packages_user="plasma sddm kde-applications $packages_desktop_full_gui"
+            packages_user="plasma kde-applications $packages_desktop_full_gui"
             ;;
 
         * ) echo "Invalid USER_DESKTOP. Try again..."
@@ -58,7 +58,7 @@ case $USER_SYSTEM in
             ;;
 
             "kde plasma") 
-            packages_user="plasma sddm kde-applications $packages_desktop_developer_gui"
+            packages_user="plasma kde-applications $packages_desktop_developer_gui"
             ;;
 
         * ) echo "Invalid USER_DESKTOP. Try again..."
@@ -73,7 +73,7 @@ case $USER_SYSTEM in
             ;;
 
             "kde plasma") 
-            packages_user="plasma sddm kde-applications"
+            packages_user="plasma kde-applications"
             ;;
 
         * ) echo "Invalid USER_DESKTOP. Try again..."
@@ -95,7 +95,7 @@ case $USER_SYSTEM in
             ;;
 
             "kde plasma") 
-            packages_user="plasma sddm kde-applications $packages_server_full_gui"
+            packages_user="plasma kde-applications $packages_server_full_gui"
             ;;
 
         * ) echo "Invalid USER_DESKTOP. Try again..."
@@ -110,7 +110,7 @@ case $USER_SYSTEM in
             ;;
 
             "kde plasma") 
-            packages_user="plasma sddm kde-applications $packages_server_developer_gui"
+            packages_user="plasma kde-applications $packages_server_developer_gui"
             ;;
 
         * ) echo "Invalid USER_DESKTOP. Try again..."
@@ -125,7 +125,7 @@ case $USER_SYSTEM in
             ;;
 
             "kde plasma") 
-            user_packages="plasma sddm kde-applications"
+            user_packages="plasma kde-applications"
             ;;
 
         * ) echo "Invalid USER_DESKTOP. Try again..."
