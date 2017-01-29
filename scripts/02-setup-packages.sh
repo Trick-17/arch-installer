@@ -43,7 +43,7 @@ case $USER_SYSTEM in
             ;;
 
             "kde plasma") 
-            packages_user="plasma-meta kde-applications $packages_desktop_full_gui"
+            packages_user="xorg-server xorg-server-utils xorg-apps plasma-meta kde-applications $packages_desktop_full_gui"
             ;;
 
         * ) echo "Invalid USER_DESKTOP. Try again..."
@@ -58,7 +58,7 @@ case $USER_SYSTEM in
             ;;
 
             "kde plasma") 
-            packages_user="plasma-meta kde-applications $packages_desktop_developer_gui"
+            packages_user="xorg-server xorg-server-utils xorg-apps plasma-meta kde-applications $packages_desktop_developer_gui"
             ;;
 
         * ) echo "Invalid USER_DESKTOP. Try again..."
@@ -73,7 +73,7 @@ case $USER_SYSTEM in
             ;;
 
             "kde plasma") 
-            packages_user="plasma-meta kde-applications"
+            packages_user="xorg-server xorg-server-utils xorg-apps plasma-meta kde-applications"
             ;;
 
         * ) echo "Invalid USER_DESKTOP. Try again..."
@@ -95,7 +95,7 @@ case $USER_SYSTEM in
             ;;
 
             "kde plasma") 
-            packages_user="plasma-meta kde-applications $packages_server_full_gui"
+            packages_user="xorg-server xorg-server-utils xorg-apps plasma-meta kde-applications $packages_server_full_gui"
             ;;
 
         * ) echo "Invalid USER_DESKTOP. Try again..."
@@ -110,7 +110,7 @@ case $USER_SYSTEM in
             ;;
 
             "kde plasma") 
-            packages_user="plasma-meta kde-applications $packages_server_developer_gui"
+            packages_user="xorg-server xorg-server-utils xorg-apps plasma-meta kde-applications $packages_server_developer_gui"
             ;;
 
         * ) echo "Invalid USER_DESKTOP. Try again..."
@@ -125,7 +125,7 @@ case $USER_SYSTEM in
             ;;
 
             "kde plasma") 
-            user_packages="plasma-meta kde-applications"
+            user_packages="xorg-server xorg-server-utils xorg-apps plasma-meta kde-applications"
             ;;
 
         * ) echo "Invalid USER_DESKTOP. Try again..."
