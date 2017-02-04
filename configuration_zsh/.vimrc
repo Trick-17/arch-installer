@@ -11,6 +11,5 @@ set smartindent
 set smarttab
 set softtabstop=4
 set ruler
-set undolevel=10000
 set backspace=indent,eol,start
 set expandtab
