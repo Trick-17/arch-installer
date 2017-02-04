@@ -15,15 +15,15 @@ def ask_choice(question, options, multiple_choice=True):
             if multiple_choice:
                 return options[[int(input) for input in user_input]]
             
-            if len(user_input) == 1
+            if len(user_input) == 1:
                 return options[0]
             
             print('Please choose only one option between 1 and ' + str(len(options) + '.'))
             continue
-        else
+        else:
             if multiple_choice:
                 print('Please choose one or more numbers between 1 and '+ str(len(options)) + ' using a comma separated list.')
-            else
+            else:
                 print('Please choose one number between 1 and ' + str(len(options)) + '.')
 
 
@@ -49,8 +49,14 @@ def get_user_input():
     user_input['system type'] = ask_choice('Please choose your kind of system:', 
                                  ['desktop', 'server'],
                                  multiple_choice=False)
-    user_input['packages'] = ask_choice('Please choose your set of packages:', 
-                              ['full', 'developer', 'media', 'minimal'])
+    if user_input['system type'] == 'desktop':
+        user_input['packages'] = ask_choice('Please choose your set of packages:', 
+                                            ['full', 'developer', 'office', 'media', 'minimal'])
+    else:
+        user_input['packages'] = ask_choice('Please choose your set of packages:', 
+                                            ['full', 'dev', 'media', 'minimal'])
+
+
     user_input['desktop'] = ask_choice('Please choose your desktop environment:',
                            ['none', 'KDE plasma'],
                            multiple_choice=False)
@@ -59,10 +65,11 @@ def get_user_input():
     user_input['graphics driver'] = ask_choice('Please choose your graphics driver manually:',
                                                ['default', 'intel', 'nVidia', 'AMD', 'vbox'],
                                                multiple_choice=False)
-    
+
     user_input['keyboard layout'] = ask_choice('Please choose your keyboard-layout:',
-                                              ['DE - Deutschland', 'DE - Schweiz', 'EN - US', 'EN - GB'],
-                                              multiple_choice=False)
+                                               ['DE - Deutschland', 'DE - Schweiz', 'EN - US', 'EN - GB'],
+                                               multiple_choice=False)
+
     user_input['language'] = ask_choice('Please choose your language and locale settings.'
                                         'You have the choice between english with reasonable locale settings and english US:',
                                         ['english (reasonable)', 'english (US)'],
