@@ -1,5 +1,5 @@
 import fileinput
-from shutil import copyfile
+from shutil import copy2
 from subprocess import run
 
 def sed_inplace(fileToSearch, textToSearch, textToReplace):
@@ -48,9 +48,9 @@ def setup_languages(user_input):
 
 
     print(" >> Setting locale vconsole and keyboard .conf files")
-    copyfile("arch-installer/locale.conf", "/mnt/etc/locale.conf")
-    copyfile("arch-installer/vconsole.conf", "/mnt/etc/vconsole.conf")
-    copyfile("arch-installer/20-keyboard.conf", "/mnt/etc/X11/xorg.conf.d")
+    copy2("arch-installer/locale.conf", "/mnt/etc/")
+    copy2("arch-installer/vconsole.conf", "/mnt/etc/")
+    copy2("arch-installer/20-keyboard.conf", "/mnt/etc/X11/xorg.conf.d")
 
     try:
         print(" >> Generating locale")
