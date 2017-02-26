@@ -1,13 +1,9 @@
 #  !  /usr/bin/env python3
 import fileinput
-import subprocess
-from subprocess import run
 from collections import defaultdict
-
-def sed_inplace(fileToSearch, textToSearch, textToReplace):
-    with fileinput.FileInput(fileToSearch, inplace=True) as file:
-        for line in file:
-            print(line.replace(textToSearch, textToReplace), end='')
+import subprocess
+from utilities import run
+from utilities import sed_inplace
 
 def install_packages(user_input):
     ### Setup Package List
@@ -124,10 +120,7 @@ def install_packages(user_input):
     ### Update mirrorlist
     print(" >> Updating mirror list")
     try:
-        run(
-            ['reflector --latest 100 --sort rate --protocol https --save /etc/pacman.d/mirrorlist'],
-            shell=True,
-            check=True)
+        run('reflector --latest 100 --sort rate --protocol https --save /etc/pacman.d/mirrorlist')
     except subprocess.CalledProcessError as error:
         print('Updating package mirrorlist failed with message: ', error.output)
 
@@ -135,7 +128,7 @@ def install_packages(user_input):
 
     print(" >> Going to install arch packages")
     try:
-        run(['pacstrap /mnt '+ package_string], shell=True, check=True)
+        run('pacstrap /mnt '+ package_string)
     except subprocess.CalledProcessError as error:
         print('Error installing packages. Message: ', error.output)
 

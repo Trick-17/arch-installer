@@ -1,22 +1,22 @@
 import subprocess
-from subprocess import run
-from subprocess import check_output
+from utilities import run
+from utilities import check_output
 
 
 def configure_bootloader():
     # Call to generate most default files and folder necessary for boot
     try:
-        run("arch-chroot /mnt bootctl --path=/boot install", shell=True, check=True)
+        run("arch-chroot /mnt bootctl --path=/boot install")
     except subprocess.CalledProcessError as error:
         print('Unable to install bootloader. Is UEFI activated on your machine?',
               ' Error message: ', error.output)
 
     # Get the part_uuid of the Linux partition
     try:
-        linux_partition_uuid = check_output("blkid -L Arch", shell=True, check=True).decode("utf-8")
+        linux_partition_uuid = check_output("blkid -L Arch")
         linux_partition_partuuid = check_output(
             "blkid -s PARTUUID -o value "
-            + linux_partition_uuid, shell=True).decode("utf-8")
+            + linux_partition_uuid)
     except subprocess.CalledProcessError as error:
         print('Unable to figure out PARTUUID of your Linux partition. Is it really called `Arch`?',
               ' Error message: ', error.output)
