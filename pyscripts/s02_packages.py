@@ -2,8 +2,8 @@
 import fileinput
 from collections import defaultdict
 import subprocess
-from utilities import run
-from utilities import sed_inplace
+from pyscripts.utilities import run
+from pyscripts.utilities import sed_inplace
 
 def install_packages(user_input):
     ### Setup Package List

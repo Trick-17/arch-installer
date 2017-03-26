@@ -1,6 +1,6 @@
 import subprocess
-from utilities import run
-from utilities import check_output
+from pyscripts.utilities import run
+from pyscripts.utilities import check_output
 
 def create_and_mount():
     print(" >> Fetching partitions from labels 'Arch' and 'EFI'")

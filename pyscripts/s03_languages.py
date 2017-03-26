@@ -1,8 +1,8 @@
 import fileinput
 from shutil import copy2
 import subprocess
-from utilities import run
-from utilities import sed_inplace
+from pyscripts.utilities import run
+from pyscripts.utilities import sed_inplace
 
 def set_keymap(keymap):
     with open('/mnt/etc/vconsole.conf', 'w') as text_file:
