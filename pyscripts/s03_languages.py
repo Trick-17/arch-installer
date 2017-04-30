@@ -1,13 +1,13 @@
 import fileinput
 from shutil import copy2
-import subprocess
+from subprocess import CalledProcessError
 from pyscripts.utilities import run
 from pyscripts.utilities import sed_inplace
 
 def set_keymap(keymap):
     with open('/mnt/etc/vconsole.conf', 'w') as text_file:
         text_file.write('KEYMAP='+keymap)
-        
+
 
 def set_keymap_gui(keymap_gui, internationalisation=False):
     # Set the keymap
@@ -35,7 +35,7 @@ def setup_languages(user_input):
     keyboard = user_input['keyboard layout']
     language = user_input['language']
     has_gui = user_input['desktop'][0] == 'KDE plasma'
-    
+
     print(" >> Setting language and keyboard layout")
     if language == 'english (reasonable)':
         set_locale('en_DK.UTF-8', 'en_GB.UTF-8')
@@ -46,7 +46,7 @@ def setup_languages(user_input):
         set_keymap('de-latin1')
         if has_gui:
             set_keymap_gui('de')
-        
+
     elif keyboard == 'DE - Schweiz':
         set_keymap('sg-latin1')
         if has_gui:
@@ -65,6 +65,6 @@ def setup_languages(user_input):
     try:
         print(" >> Generating locale")
         run("arch-chroot /mnt locale-gen")
-    except subprocess.CalledProcessError as error:
+    except CalledProcessError as error:
         print('Unable to generate locale on /mnt...',
               ' Error message: ', error.output)

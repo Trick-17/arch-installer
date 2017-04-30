@@ -1,26 +1,26 @@
 import re
+from subprocess import CalledProcessError
 from pyscripts.utilities import run
-import subprocess
 
 
 def ask_choice(question, options, multiple_choice=True):
-    while(True):
-        question += '\n' + \
+    question += '\n' + \
             '  '.join([str(i + 1) + ') ' + opt for i,
                        opt in enumerate(options)]) + '\n --> '
+    while True:
         user_input = [x.strip() for x in str(input(question)).split(',')]
         is_valid = True
         for input_ in user_input:
-            if not input_.isdigit() or not input_ in range(1, len(options) + 1):
+            if not input_.isdigit() or not int(input_) in range(1, len(options) + 1):
                 is_valid = False
                 break
 
         if is_valid:
             if multiple_choice:
-                return options[[int(input_) for input_ in user_input]]
+                return [options[int(input_)-1] for input_ in user_input]
 
             if len(user_input) == 1:
-                return options[0]
+                return options[int(user_input[0])-1]
 
             print('Please choose only one option between 1 and ' +
                   str(len(options) + '.'))
@@ -37,7 +37,7 @@ def ask_choice(question, options, multiple_choice=True):
 def ask_for_input(question, restricted_character_set=False, not_empty=True):
     while True:
         user_input = input(
-            question + ' [a-z0-9_]' if restricted_character_set else '').strip()
+            question + (' [a-z0-9_]' if restricted_character_set else '') + '\n --> ').strip()
         if(restricted_character_set and
            re.match('^[a-z0-9_]*$', user_input) is not None and
            (user_input if not_empty else True)):
@@ -46,7 +46,7 @@ def ask_for_input(question, restricted_character_set=False, not_empty=True):
         print('Please only use allowed characters.')
 
 
-def get_user_input():
+def get_user_input(detected_hardware):
     user_input = {}
 
     # First ask for keyboard layout
@@ -54,7 +54,7 @@ def get_user_input():
                                                ['DE - Deutschland', 'DE - Schweiz',
                                                 'EN - US', 'EN - GB'],
                                                multiple_choice=False)
-    
+
     # And set it immediately for the current installation so that the
     # user can enter his user name etc correctly
     try:
@@ -66,15 +66,15 @@ def get_user_input():
 
         elif user_input['keyboard layout'][0] == 'EN - GB':
             run("loadkeys uk")
-    except subprocess.CalledProcessError as error:
+    except CalledProcessError as error:
         print('Unable to set keyboard to requested model: ' + error.output)
 
 
-    user_input['user name'] = ask_for_input('Please choose your username. '
+    user_input['username'] = ask_for_input('Please choose your username. '
                                             'If you do not specify a username, no user will be created for you:',
                                             restricted_character_set=True,
                                             not_empty=False)
-    user_input['host_name'] = ask_for_input('Please choose a hostname (device name):',
+    user_input['hostname'] = ask_for_input('Please choose a hostname (device name):',
                                             restricted_character_set=True)
     user_input['system type'] = ask_choice('Please choose your kind of system:',
                                            ['desktop', 'server'],
@@ -92,10 +92,18 @@ def get_user_input():
     # TODO: Check CPU driver
     # TODO: First check GPU automatically, then ask if it is correct, offer
     # options otherwise
-    user_input['graphics driver'] = ask_choice('Please choose your graphics driver manually:',
-                                               ['default', 'intel',
-                                                'nVidia', 'AMD', 'vbox'],
-                                               multiple_choice=False)
+
+
+    gpu_is_correct = ask_choice('The following GPU vendor was auto-detected: `'+detected_hardware['gpu']+'`. Is this correct?',
+                                ['Yes', 'No'], multiple_choice=False)
+    
+    if gpu_is_correct == 'Yes':
+        user_input['graphics driver'] = detected_hardware['gpu']
+    else:
+        user_input['graphics driver'] = ask_choice('Please choose your graphics driver manually:',
+                                                   ['default', 'intel',
+                                                    'nVidia', 'AMD', 'vbox'],
+                                                   multiple_choice=False)
 
     user_input['language'] = ask_choice('Please choose your language and locale settings.'
                                         'You have the choice between english with reasonable locale settings and english US:',

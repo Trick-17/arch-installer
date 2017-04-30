@@ -1,8 +1,8 @@
-import subprocess
-from subprocess import run
+from pyscripts.utilities import run
+from subprocess import CalledProcessError
 
 print(" >> Enabling dhcpd")
 try:
-    run("arch-chroot /mnt systemctl enable dhcpcd", shell=True, check=True)
-except subprocess.CalledProcessError as error:
+    run('arch-chroot /mnt systemctl enable dhcpcd')
+except CalledProcessError as error:
     print('Enabling dhcpd failed with message: ', error.output)

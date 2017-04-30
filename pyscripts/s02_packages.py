@@ -1,13 +1,13 @@
 #  !  /usr/bin/env python3
-import fileinput
 from collections import defaultdict
-import subprocess
+from subprocess import CalledProcessError
 from pyscripts.utilities import run
 from pyscripts.utilities import sed_inplace
 
 def install_packages(user_input):
     ### Setup Package List
     print(" >> Creating package list")
+    print(" Your choices: ", user_input)
 
     misc_packages = ['base',
                      'base-devel',
@@ -103,10 +103,10 @@ def install_packages(user_input):
                 package for package in value[user_input['system type']]
                 for key, value in gui_packages]
     else:
-        for package_type in user_input:
+        for package_type in user_input['packages']:
             package_list += packages[package_type][user_input['system type']]
             if user_input['desktop'] != 'none':
-                package_list += packages[user_input['desktop']]
+                package_list += desktop_distros[user_input['desktop']]
                 package_list += gui_packages[package_type][user_input['system type']]
 
     package_string = " ".join(package_list)
@@ -121,7 +121,7 @@ def install_packages(user_input):
     print(" >> Updating mirror list")
     try:
         run('reflector --latest 100 --sort rate --protocol https --save /etc/pacman.d/mirrorlist')
-    except subprocess.CalledProcessError as error:
+    except CalledProcessError as error:
         print('Updating package mirrorlist failed with message: ', error.output)
 
 
@@ -129,7 +129,7 @@ def install_packages(user_input):
     print(" >> Going to install arch packages")
     try:
         run('pacstrap /mnt '+ package_string)
-    except subprocess.CalledProcessError as error:
+    except CalledProcessError as error:
         print('Error installing packages. Message: ', error.output)
 
     print(" >> Installed arch packages")
