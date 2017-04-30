@@ -10,14 +10,14 @@ def ask_choice(question, options, multiple_choice=True):
                        opt in enumerate(options)]) + '\n --> '
         user_input = [x.strip() for x in str(input(question)).split(',')]
         is_valid = True
-        for input in user_input:
-            if not input.isdigit() or not input in range(1, len(options) + 1):
+        for input_ in user_input:
+            if not input_.isdigit() or not input_ in range(1, len(options) + 1):
                 is_valid = False
                 break
 
         if is_valid:
             if multiple_choice:
-                return options[[int(input) for input in user_input]]
+                return options[[int(input_) for input_ in user_input]]
 
             if len(user_input) == 1:
                 return options[0]
