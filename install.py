@@ -12,6 +12,13 @@ from pyscripts import s04_bootloader as bootloader
 from pyscripts import s05_fstab as fstab
 from pyscripts import s06_timezone as timezone
 from pyscripts import s07_hostname as hostname
+from pyscripts import s08_network as network
+from pyscripts import s09_sshd as sshd
+from pyscripts import s10_desktop as desktop
+from pyscripts import s11_shell as shell
+from pyscripts import s12_aur as aur
+from pyscripts import s13_users as users
+
 import pyscripts.utilities as install_utilities
 
 
@@ -45,15 +52,15 @@ ui = user_input.get_user_input(detected_hardware)
 
 
 partitions.create_and_mount()
-
 packages.install_packages(ui)
-
 languages.setup_languages(ui)
-
 bootloader.configure_bootloader()
-
 fstab.generate_fstab()
-
 timezone.setup_timezone(ui)
-
 hostname.setup_hostname(ui)
+network.configure_network()
+sshd.configure_ssh()
+desktop.configure_desktop(ui)
+shell.configure_shell()
+aur.configure_aur()
+users.configure_users(ui)
