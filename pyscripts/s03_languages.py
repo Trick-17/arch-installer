@@ -21,7 +21,7 @@ def set_keymap_gui(keymap_gui, internationalisation=False):
         sed_inplace('arch-installer/20-keyboard.conf', '<INTL>', '')
 
     # Finally copy file over
-    copy2('cp arch-installer/20-keyboard.conf', '/mnt/etc/X11/xorg.conf.d/')
+    copy2('arch-installer/20-keyboard.conf', '/mnt/etc/X11/xorg.conf.d/')
 
 def set_locale(lang, lc_time):
     with open('/mnt/etc/locale.conf', 'w') as text_file:
