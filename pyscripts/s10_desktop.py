@@ -25,7 +25,11 @@ def configure_desktop(user_input):
         #if not os.path.exists("mkdir -p /mnt/etc/skel/.local/share/konsole/"):
         #    os.makedirs("mkdir -p /mnt/etc/skel/.local/share/konsole/")
 
-        copytree("arch-installer/configuration_desktop", "/mnt/etc/skel/")
+        #copytree("arch-installer/configuration_desktop", "/mnt/etc/skel/")
+        try:
+            run('cp -a arch-installer/configuration_desktop/. /mnt/etc/skel/')
+        except CalledProcessError as error:
+            print('Error installing default user desktop configurations with message: ', error.output)
         #copy2("arch-installer/configuration_desktop/.config/kdeglobals", "/mnt/etc/skel/.config/")
         #copy2("arch-installer/configuration_desktop/.config/konsolerc", "/mnt/etc/skel/.config/")
         #copy2("arch-installer/configuration_desktop/.config/yakuakerc", "/mnt/etc/skel/.config/")
