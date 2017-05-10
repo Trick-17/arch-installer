@@ -21,7 +21,8 @@ def install_packages(user_input):
                      'unrar',
                      'fortune-mod',
                      'reflector',
-                     'tree']
+                     'tree',
+                     'abs']
     packages = {
         'minimal': {
             'desktop' : [],
