@@ -54,7 +54,6 @@ def install_packages(user_input):
 
     desktop_distros = {
         "KDE plasma": ['xorg-server',
-                       'xorg-server-utils',
                        'xorg-apps',
                        'yakuake',
                        'plasma-meta',
