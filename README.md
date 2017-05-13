@@ -25,7 +25,7 @@ Switch to a folder of your choice and execute the following commands:
 
     sudo pacman -S archiso
     git clone https://github.com/Trick-17/arch-installer.git
-    cd releng
+    cd arch-installer/releng
     sh createIso.sh
     
 (see also https://blog.chendry.org/automating-arch-linux-installation/).
