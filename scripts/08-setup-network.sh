@@ -1,1 +1,0 @@
-arch-chroot /mnt systemctl enable dhcpcd

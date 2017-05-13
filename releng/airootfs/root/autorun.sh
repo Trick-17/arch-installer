@@ -40,4 +40,5 @@ echo "Executing Install-scripts... "
 echo " "
 echo " "
 echo "=========================================================================="
-./arch-installer/install.sh
+
+python arch-installer/install.py
