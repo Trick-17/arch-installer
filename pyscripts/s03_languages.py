@@ -1,3 +1,4 @@
+import os
 import fileinput
 from shutil import copy2
 from subprocess import CalledProcessError
@@ -34,7 +35,7 @@ def set_locale(lang, lc_time):
 def setup_languages(user_input):
     keyboard = user_input['keyboard layout']
     language = user_input['language']
-    has_gui = user_input['desktop'][0] == 'KDE plasma'
+    has_gui = user_input['desktop'] == 'KDE plasma'
 
     print(" >> Setting language and keyboard layout")
     if language == 'english (reasonable)':
