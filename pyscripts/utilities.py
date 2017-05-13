@@ -16,4 +16,4 @@ def run(command):
         subprocess.run(command, shell=True, check=True)
 
 def check_output(command):
-    return subprocess.check_output(command, shell=True).decode("utf-8")
+    return subprocess.check_output(command, shell=True).decode("utf-8").strip()

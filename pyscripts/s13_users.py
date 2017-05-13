@@ -30,4 +30,4 @@ def configure_users(user_input):
             print(' >> It seems you did not type in matching passwords. Error-message: ', error.output)
 
     ### Place the user into the sudoers list
-    sed_inplace("/mnt/etc/sudoers", "# %wheel ALL=(ALL) ALL", "%wheel ALL=(ALL) ALL")
+    sed_inplace("/mnt/etc/sudoers", "# %wheel ALL=\(ALL\) ALL", "%wheel ALL=(ALL) ALL")
