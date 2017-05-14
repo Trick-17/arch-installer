@@ -31,7 +31,7 @@ chdir("..")
 # Open list of packages
 with open('aurPackageList.txt') as f:
     # Make list of packages to install
-    packages = f.read().replace('\n', ' ')
+    packages = f.read()
 
 # Call installer for all packages
 call("sudo aura -A "+packages+" --noconfirm", shell=True)
