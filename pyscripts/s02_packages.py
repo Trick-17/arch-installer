@@ -104,7 +104,7 @@ def install_packages(user_input):
                 package for package in value[user_input['system type']]
                 for key, value in gui_packages]
     else:
-        for package_type in user_input['packages']:
+        for package_type in set(['minimal'] + user_input['packages']):
             package_list += packages[package_type][user_input['system type']]
             if user_input['desktop'] != 'none':
                 package_list += desktop_distros[user_input['desktop']]
