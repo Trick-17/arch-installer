@@ -35,6 +35,7 @@ def install_packages(user_input):
                                   'ocl-icd',
                                   'openmpi',
                                   'hdf5-cpp-fortran',
+                                  'python2-pip',
                                   'python-pip',
                                   'ipython',
                                   'python-h5py',
@@ -64,7 +65,7 @@ def install_packages(user_input):
     gui_packages = {
         'minimal': {
             'desktop': ['qtox',
-                        'owncloud-client',
+                        'nextcloud-client',
                         'xclip'],
             'server': []},
         'developer': defaultdict(lambda: []),
@@ -80,7 +81,7 @@ def install_packages(user_input):
                         'vlc'],
             'server': ['vlc',
                        'teamspeak3-server',
-                       'owncloud-server']}
+                       'nextcloud']}
     }
 
     graphics_driver_packages = {
