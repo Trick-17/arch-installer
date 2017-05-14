@@ -145,7 +145,7 @@ def install_packages(user_input):
     package_string = " ".join(package_list)
     aur_package_string = " ".join(aur_package_list)
 
-    with open('aur-packages/aurPackageList.txt', 'w') as txt_file:
+    with open('arch-installer/aur-packages/aurPackageList.txt', 'w') as txt_file:
         txt_file.write(aur_package_string)
 
 
