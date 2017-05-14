@@ -18,6 +18,7 @@ from pyscripts import s10_desktop as desktop
 from pyscripts import s11_shell as shell
 from pyscripts import s12_aur as aur
 from pyscripts import s13_users as users
+from pyscripts import s14_pacman_reflector_hook as pacman_reflector_hook
 
 import pyscripts.utilities as install_utilities
 
@@ -64,3 +65,4 @@ desktop.configure_desktop(ui)
 shell.configure_shell()
 aur.configure_aur()
 users.configure_users(ui)
+pacman_reflector_hook.configure_pacman_reflector_hook()
