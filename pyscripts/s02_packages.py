@@ -77,7 +77,6 @@ def install_packages(user_input):
     gui_packages = {
         'minimal': {
             'desktop': ['qtox',
-                        'nextcloud-client',
                         'xclip'],
             'server': []},
         'developer': defaultdict(lambda: []),
@@ -101,7 +100,7 @@ def install_packages(user_input):
         'developer': defaultdict(lambda: ['visual-studio-code']),
         'office': defaultdict(lambda: []),
         'media': {
-            'desktop': ['skypeforlinux-bin'],
+            'desktop': ['skypeforlinux-bin', 'nextcloud-client'],
             'server': []}
     }
 
