@@ -54,6 +54,18 @@ def install_packages(user_input):
                               'ffmpeg'])
     }
 
+    aur_packages = {
+        'minimal': {
+            'desktop' : [],
+            'server'  : []},
+        'developer': defaultdict(lambda:
+                                 ['clinfo']),
+        'office': defaultdict(lambda:
+                              []),
+        'media': defaultdict(lambda:
+                             [])
+    }
+
     desktop_distros = {
         "KDE plasma": ['xorg-server',
                        'xorg-apps',
@@ -84,6 +96,15 @@ def install_packages(user_input):
                        'nextcloud']}
     }
 
+    aur_gui_packages = {
+        'minimal': defaultdict(lambda: ['yakuake-skin-breeze-thin-dark']),
+        'developer': defaultdict(lambda: ['visual-studio-code']),
+        'office': defaultdict(lambda: []),
+        'media': {
+            'desktop': ['skypeforlinux-bin'],
+            'server': []}
+    }
+
     graphics_driver_packages = {
         'default': ['mesa', 'mesa-libgl', 'xf86-video-vesa', 'opencl-mesa'],
         'intel':   ['mesa', 'mesa-libgl', 'xf86-video-intel', 'opencl-mesa'],
@@ -94,23 +115,38 @@ def install_packages(user_input):
     package_list = misc_packages
     package_list += graphics_driver_packages[user_input['graphics driver']]
 
+    aur_package_list = []
+
     if 'full' in user_input['packages']:
-        package_list += [
-            package for package in value[user_input['system type']]
-            for key, value in packages]
+        for _, value in packages:
+            package_list += value[user_input['system type']]
+        
+        for _, value in aur_packages:
+            aur_package_list += value[user_input['system type']]
+
+
         if user_input['desktop'] != 'none':
             package_list += desktop_distros[user_input['desktop']]
-            package_list += [
-                package for package in value[user_input['system type']]
-                for key, value in gui_packages]
+            for _, value in gui_packages:
+                package_list += value[user_input['system type']]
+            for _, value in aur_gui_packages:
+                aur_package_list += value[user_input['system type']]
+
     else:
         for package_type in set(['minimal'] + user_input['packages']):
             package_list += packages[package_type][user_input['system type']]
+            aur_package_list += aur_packages[package_type][user_input['system type']]
+
             if user_input['desktop'] != 'none':
                 package_list += desktop_distros[user_input['desktop']]
                 package_list += gui_packages[package_type][user_input['system type']]
+                aur_package_list += aur_gui_packages[package_type][user_input['system type']]
 
     package_string = " ".join(package_list)
+    aur_package_string = " ".join(aur_package_list)
+
+    with open('aur-packages/aurPackageList.txt', 'w') as txt_file:
+        txt_file.write(aur_package_string)
 
 
 
