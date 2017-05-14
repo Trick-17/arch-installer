@@ -58,13 +58,13 @@ def get_user_input(detected_hardware):
     # And set it immediately for the current installation so that the
     # user can enter his user name etc correctly
     try:
-        if user_input['keyboard layout'][0] == 'DE - Deutschland':
+        if user_input['keyboard layout'] == 'DE - Deutschland':
             run("loadkeys de-latin1")
 
-        elif user_input['keyboard layout'][0] == 'DE - Schweiz':
+        elif user_input['keyboard layout'] == 'DE - Schweiz':
             run("loadkeys sg-latin1")
 
-        elif user_input['keyboard layout'][0] == 'EN - GB':
+        elif user_input['keyboard layout'] == 'EN - GB':
             run("loadkeys uk")
     except CalledProcessError as error:
         print('Unable to set keyboard to requested model: ' + error.output)
