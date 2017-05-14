@@ -1,5 +1,6 @@
 from shutil import copy2
 from pyscripts.utilities import run
+from pyscripts.utilities import sed_inplace
 
 
 def configure_aur():
@@ -18,8 +19,7 @@ def configure_aur():
 
     # Remove fake install user,
     run("arch-chroot /mnt userdel installer")
-    # TODO:
-    #sed -i '/installer ALL=(ALL) NOPASSWD: ALL/d' /mnt/etc/sudoers
+    sed_inplace('/mnt/etc/sudoers', 'installer ALL=\(ALL\) NOPASSWD: ALL', '')
     run("rm -rf /mnt/home/installer")
 
     print(" >> Installed AUR packages")
