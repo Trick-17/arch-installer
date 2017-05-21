@@ -21,8 +21,7 @@ def install_packages(user_input):
                      'unrar',
                      'fortune-mod',
                      'reflector',
-                     'tree',
-                     'abs']
+                     'tree']
     packages = {
         'minimal': {
             'desktop' : [],
@@ -117,18 +116,18 @@ def install_packages(user_input):
     aur_package_list = []
 
     if 'full' in user_input['packages']:
-        for _, value in packages:
+        for _, value in packages.items():
             package_list += value[user_input['system type']]
         
-        for _, value in aur_packages:
+        for _, value in aur_packages.items():
             aur_package_list += value[user_input['system type']]
 
 
         if user_input['desktop'] != 'none':
             package_list += desktop_distros[user_input['desktop']]
-            for _, value in gui_packages:
+            for _, value in gui_packages.items():
                 package_list += value[user_input['system type']]
-            for _, value in aur_gui_packages:
+            for _, value in aur_gui_packages.items():
                 aur_package_list += value[user_input['system type']]
 
     else:
