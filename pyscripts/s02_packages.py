@@ -78,7 +78,7 @@ def install_packages(user_input):
             'desktop': ['qtox',
                         'xclip'],
             'server': []},
-        'developer': defaultdict(lambda: []),
+        'developer': defaultdict(lambda: ['xterm']),
         'office': defaultdict(lambda:
                               ['texstudio',
                                'libreoffice-fresh']),
