@@ -60,12 +60,19 @@ def get_user_input(detected_hardware):
     try:
         if user_input['keyboard layout'] == 'DE - Deutschland':
             run("loadkeys de-latin1")
+            run("set -x LANG \'en_DK.UTF-8\'")
+            run("set -x LC_ALL \'en_DK.UTF-8\'")
 
         elif user_input['keyboard layout'] == 'DE - Schweiz':
             run("loadkeys sg-latin1")
+            run("set -x LANG \'en_DK.UTF-8\'")
+            run("set -x LC_ALL \'en_DK.UTF-8\'")
 
         elif user_input['keyboard layout'] == 'EN - GB':
             run("loadkeys uk")
+            run("set -x LANG \'en_US.UTF-8\'")
+            run("set -x LC_ALL \'en_US.UTF-8\'")
+
     except CalledProcessError as error:
         print('Unable to set keyboard to requested model: ' + error.output)
 
