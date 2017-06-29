@@ -15,6 +15,8 @@ def install_packages(user_input):
                      'wget',
                      'git',
                      'vim',
+                     'vim-supertab',
+                     'vim-jedi',
                      'zsh',
                      'powerline-fonts',
                      'p7zip',
