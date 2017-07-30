@@ -101,7 +101,7 @@ def install_packages(user_input):
         'developer': defaultdict(lambda: ['visual-studio-code']),
         'office': defaultdict(lambda: []),
         'media': {
-            'desktop': ['skypeforlinux-bin', 'nextcloud-client'],
+            'desktop': ['skypeforlinux-bin'], #, 'nextcloud-client' ### nextcloud-client seems to produce a bytesequence error in aura...
             'server': []}
     }
 
