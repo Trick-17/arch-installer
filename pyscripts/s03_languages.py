@@ -27,7 +27,7 @@ def set_keymap_gui(keymap_gui, internationalisation=False):
 def set_locale(lang, lc_time):
     with open('/mnt/etc/locale.conf', 'w') as text_file:
         text_file.write('LANG=' + lang + '\n')
-        text_file.write('LC_TIME' + lc_time + '\n')
+        text_file.write('LC_TIME=' + lc_time + '\n')
         sed_inplace('/mnt/etc/locale.gen', '#' + lang, lang)
         sed_inplace('/mnt/etc/locale.gen', '#' + lc_time, lc_time)
         sed_inplace('arch-installer/configuration_zsh/zshrc', '<replace>',  lang)
