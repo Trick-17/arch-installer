@@ -63,8 +63,9 @@ def install_packages(user_input):
                                  ['clinfo']),
         'office': defaultdict(lambda:
                               []),
-        'media': defaultdict(lambda:
-                             [])
+        'media': {
+            'desktop' : [],
+            'server'  : ['teamspeak3-server']}
     }
 
     desktop_distros = {
@@ -92,7 +93,6 @@ def install_packages(user_input):
                         'handbrake',
                         'vlc'],
             'server': ['vlc',
-                       'teamspeak3-server',
                        'nextcloud']}
     }
 
