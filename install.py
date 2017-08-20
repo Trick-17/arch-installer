@@ -6,19 +6,20 @@ import argparse
 from pyscripts import s000_detect_hardware as hardware
 from pyscripts import s00_user_input as user_input
 from pyscripts import s01_partitions as partitions
-from pyscripts import s02_packages as packages
-from pyscripts import s03_languages as languages
-from pyscripts import s04_bootloader as bootloader
-from pyscripts import s05_fstab as fstab
-from pyscripts import s06_timezone as timezone
-from pyscripts import s07_hostname as hostname
-from pyscripts import s08_network as network
-from pyscripts import s09_sshd as sshd
-from pyscripts import s10_desktop as desktop
-from pyscripts import s11_shell as shell
-from pyscripts import s12_aur as aur
-from pyscripts import s13_users as users
+from pyscripts import s02_basic_arch as basic_arch
+from pyscripts import s03_package_manager as package_manager
+from pyscripts import s04_packages as packages
+from pyscripts import s05_languages as languages
+from pyscripts import s06_bootloader as bootloader
+from pyscripts import s07_fstab as fstab
+from pyscripts import s08_timezone as timezone
+from pyscripts import s09_hostname as hostname
+from pyscripts import s10_network as network
+from pyscripts import s11_sshd as sshd
+from pyscripts import s12_desktop as desktop
+from pyscripts import s13_shell as shell
 from pyscripts import s14_pacman_reflector_hook as pacman_reflector_hook
+from pyscripts import s15_users as users
 
 import pyscripts.utilities as install_utilities
 
@@ -53,7 +54,10 @@ ui = user_input.get_user_input(detected_hardware)
 
 
 partitions.create_and_mount()
-packages.install_packages(ui)
+basic_arch.install_basic_arch()
+with install_utilities.fake_install_user() as user:
+    package_manager.install_package_manager(user)
+    packages.install_packages(ui, user)
 languages.setup_languages(ui)
 bootloader.configure_bootloader()
 fstab.generate_fstab()
@@ -63,6 +67,5 @@ network.configure_network()
 sshd.configure_ssh()
 desktop.configure_desktop(ui)
 shell.configure_shell()
-aur.configure_aur()
 users.configure_users(ui)
 pacman_reflector_hook.configure_pacman_reflector_hook()
