@@ -1,5 +1,5 @@
 cd /home/installer
-pacman -S yajl expac --noconfirm
+sudo pacman -S yajl expac --noconfirm
 git clone https://aur.archlinux.org/cower.git
 cd cower
 makepkg

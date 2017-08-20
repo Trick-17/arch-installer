@@ -117,14 +117,12 @@ def install_packages(user_input, install_user_name):
 
     package_string = " ".join(package_list)
 
-    with open('/mnt/PackageList.txt', 'w') as txt_file:
-        txt_file.write(package_string)
-
     print(" >> Going to install user packages")
-    with tempfile.NamedTemporaryFile(suffix='.txt', dir='/mnt') as package_file:
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', dir='/mnt') as package_file:
         package_file.write(package_string)
+        package_file.flush()
         try:
-            run('arch-chroot /mnt sudo -u {} pacaur `cat {}`'.format(install_user_name, package_file.name))
+            run('arch-chroot /mnt sudo -u {} pacaur -S --noconfirm `cat {}`'.format(install_user_name, package_file.name))
         except CalledProcessError as error:
             print('Error installing packages. Message: ', error.output)
 
