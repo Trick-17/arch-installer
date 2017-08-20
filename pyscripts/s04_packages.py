@@ -122,7 +122,7 @@ def install_packages(user_input, install_user_name):
         package_file.write(package_string)
         package_file.flush()
         try:
-            run('arch-chroot /mnt sudo -u {} pacaur -S --noconfirm `cat {}`'.format(install_user_name, package_file.name))
+            run('arch-chroot /mnt sudo -u {} pacaur -S --noconfirm --noedit `cat {}`'.format(install_user_name, package_file.name))
         except CalledProcessError as error:
             print('Error installing packages. Message: ', error.output)
 
