@@ -1,6 +1,7 @@
 import subprocess
 import fileinput
 import re
+import contextlib
 
 DEBUG = False
 
@@ -17,3 +18,16 @@ def run(command):
 
 def check_output(command):
     return subprocess.check_output(command, shell=True).decode("utf-8").strip()
+
+@contextlib.contextmanager
+def fake_install_user():
+    user_name = 'installer'
+    run('arch-chroot /mnt useradd -m '+user_name)
+    open('/mnt/etc/sudoers', 'a').write(
+        '{} ALL=(ALL) NOPASSWD: ALL\n'.format(user_name))
+    
+    yield user_name
+
+    run('arch-chroot /mnt userdel installer')
+    sed_inplace('/mnt/etc/sudoers', 'installer ALL=\(ALL\) NOPASSWD: ALL', '')
+    run('rm -rf /mnt/home/installer')
