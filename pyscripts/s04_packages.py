@@ -19,7 +19,8 @@ def install_packages(user_input, install_user_name):
                      'unrar',
                      'fortune-mod',
                      'reflector',
-                     'tree']
+                     'tree',
+                     'prezto-git']
     packages = {
         'minimal': {
             'desktop' : [],
@@ -101,7 +102,7 @@ def install_packages(user_input, install_user_name):
     if 'full' in user_input['packages']:
         for _, value in packages.items():
             package_list += value[user_input['system type']]
-        
+
         if user_input['desktop'] != 'none':
             package_list += desktop_distros[user_input['desktop']]
             for _, value in gui_packages.items():
