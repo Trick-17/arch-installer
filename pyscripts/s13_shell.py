@@ -1,3 +1,4 @@
+import os
 import fileinput
 from shutil import copy2
 from subprocess import CalledProcessError
@@ -18,7 +19,12 @@ def configure_shell():
     ### Copy prompt theme and .zpreztorc over
     copy2("arch-installer/configuration_zsh/zshrc", "/mnt/etc/skel/.zshrc")
     copy2("arch-installer/configuration_zsh/zpreztorc", "/mnt/etc/skel/.zpreztorc")
-    copy2("arch-installer/configuration_zsh/prompt_plasmon_setup", "/mnt/etc/skel/.zprezto/modules/prompt/functions/")
+
+    directory = "/mnt/etc/skel/.zprezto/modules/prompt/functions/"
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
+    copy2("arch-installer/configuration_zsh/prompt_plasmon_setup", directory)
 
     ### Copy Vim-config
     copy2("arch-installer/configuration_zsh/.vimrc", "/mnt/etc/skel/")
