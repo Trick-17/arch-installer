@@ -10,6 +10,15 @@ def install_packages(user_input, install_user_name):
     print(" >> Creating package list")
     print(" Your choices: ", user_input)
 
+    sed_inplace(
+        '/etc/makepkg.conf',
+        '#MAKEFLAGS="-j2"',
+        'MAKEFLAGS="-j$(nproc)"')
+    sed_inplace(
+        '/mnt/etc/makepkg.conf',
+        '#MAKEFLAGS="-j2"',
+        'MAKEFLAGS="-j$(nproc)"')
+
     misc_packages = ['vim',
                      'vim-supertab',
                      'vim-jedi',
@@ -101,7 +110,7 @@ def install_packages(user_input, install_user_name):
     if 'full' in user_input['packages']:
         for _, value in packages.items():
             package_list += value[user_input['system type']]
-        
+
         if user_input['desktop'] != 'none':
             package_list += desktop_distros[user_input['desktop']]
             for _, value in gui_packages.items():
