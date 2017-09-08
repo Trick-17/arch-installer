@@ -28,11 +28,15 @@ def install_packages(user_input, install_user_name):
                      'unrar',
                      'fortune-mod',
                      'reflector',
-                     'tree']
+                     'tree',
+                     'openssh',
+                     'networkmanager',
+                     'htop',
+                     'tmux']
     packages = {
         'minimal': {
             'desktop' : [],
-            'server'  : ['openssh']},
+            'server'  : []},
         'developer': defaultdict(lambda:
                                  ['cmake',
                                   'boost',
