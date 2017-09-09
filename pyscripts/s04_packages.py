@@ -96,9 +96,11 @@ def install_packages(user_input, install_user_name):
                         'handbrake',
                         'vlc',
                         'skypeforlinux-bin',
-                        'nextcloud-client'],
+                        'nextcloud-client',
+                        'steam'],
             'server': ['vlc',
-                       'nextcloud']}
+                       'nextcloud',
+                       'steam']}
     }
 
     graphics_driver_packages = {
