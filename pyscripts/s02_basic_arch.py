@@ -9,8 +9,8 @@ def install_basic_arch():
     sed_inplace("/etc/pacman.conf", "#Color", "Color")
     sed_inplace("/etc/pacman.conf", "#TotalDownload", "TotalDownload")
     ### Enable Multilib
-    sed_inplace("/etc/pacman.conf", "#[multilib]", "[multilib]")
-    sed_inplace("/etc/pacman.conf", "#Include = /etc/pacman.d/mirrorlist", "Include = /etc/pacman.d/mirrorlist")
+    with open("/etc/pacman.conf", "a") as file:
+        file.write("[multilib]\nInclude = /etc/pacman.d/mirrorlist")
 
     ### Update mirrorlist
     print(" >> Updating mirror list")
@@ -40,5 +40,5 @@ def install_basic_arch():
     sed_inplace("/mnt/etc/pacman.conf", "#Color", "Color")
     sed_inplace("/mnt/etc/pacman.conf", "#TotalDownload", "TotalDownload")
     ### Enable Multilib on installed system
-    sed_inplace("/mnt/etc/pacman.conf", "#[multilib]", "[multilib]")
-    sed_inplace("/mnt/etc/pacman.conf", "#Include = /etc/pacman.d/mirrorlist", "Include = /etc/pacman.d/mirrorlist")
+    with open("/mnt/etc/pacman.conf", "a") as file:
+        file.write("[multilib]\nInclude = /etc/pacman.d/mirrorlist")
