@@ -1,3 +1,4 @@
+gpg --recv-keys --keyserver hkp://pgp.mit.edu 1EB2638FF56C0C53
 cd /home/installer
 sudo pacman -S yajl expac --noconfirm
 git clone https://aur.archlinux.org/cower.git
