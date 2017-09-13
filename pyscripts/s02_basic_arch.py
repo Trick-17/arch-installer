@@ -16,8 +16,15 @@ def install_basic_arch():
     except CalledProcessError as error:
         print('Updating package mirrorlist failed with message: ', error.output)
 
+    ### Update system and keyring
+    print(" >> Updating system and keyring")
+    try:
+        run('pacman -Sy --noconfirm')
+        run('pacman -S archlinux-keyring --noconfirm')
+    except CalledProcessError as error:
+        print('Updating system and keyring failed with message: ', error.output)
 
-
+    ### Install base packages
     print(" >> Going to install arch base packages")
     try:
         run('pacstrap /mnt '+ ' '.join(basics))
@@ -25,7 +32,6 @@ def install_basic_arch():
         print('Error installing base packages. Message: ', error.output)
 
     print(" >> Installed arch base packages")
-
 
     ### Nicer formatting for pacstrap on installed system
     sed_inplace("/mnt/etc/pacman.conf", "#Color", "Color")
