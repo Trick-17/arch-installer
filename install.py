@@ -14,12 +14,11 @@ from pyscripts import s06_bootloader as bootloader
 from pyscripts import s07_fstab as fstab
 from pyscripts import s08_timezone as timezone
 from pyscripts import s09_hostname as hostname
-from pyscripts import s10_network as network
-from pyscripts import s11_sshd as sshd
-from pyscripts import s12_desktop as desktop
-from pyscripts import s13_shell as shell
-from pyscripts import s14_pacman_reflector_hook as pacman_reflector_hook
-from pyscripts import s15_users as users
+from pyscripts import s10_desktop as desktop
+from pyscripts import s11_autostart as autostart
+from pyscripts import s12_shell as shell
+from pyscripts import s13_pacman_reflector_hook as pacman_reflector_hook
+from pyscripts import s14_users as users
 
 import pyscripts.utilities as install_utilities
 
@@ -57,9 +56,8 @@ bootloader.configure_bootloader()
 fstab.generate_fstab()
 timezone.setup_timezone(ui)
 hostname.setup_hostname(ui)
-network.configure_network()
-sshd.configure_ssh()
 desktop.configure_desktop(ui)
+autostart.autostart_add_services(ui)
 shell.configure_shell()
 users.configure_users(ui)
 pacman_reflector_hook.configure_pacman_reflector_hook()

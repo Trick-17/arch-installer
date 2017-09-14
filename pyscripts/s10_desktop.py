@@ -9,15 +9,14 @@ from subprocess import CalledProcessError
 def configure_desktop(user_input):
     if user_input['desktop'] == 'KDE plasma':
 
-        print(" >> Activating Desktop (sddm)")
+        print(" >> Configuring desktop (sddm)")
         try:
             run("arch-chroot /mnt sddm --example-config > /mnt/etc/sddm.conf")
             sed_inplace("/mnt/etc/sddm.conf", "^Current=.*", "Current=breeze")
             sed_inplace("/mnt/etc/sddm.conf", "CursorTheme=", "CursorTheme=breeze-dark")
             sed_inplace("/mnt/etc/sddm.conf", "Numlock=none", "Numlock=on")
-            run("arch-chroot /mnt systemctl enable sddm")
         except CalledProcessError as error:
-            print('Enabling sddm failed with message: ', error.output)
+            print('Configuring desktop (sddm) failed with message: ', error.output)
 
         print(" >> Copying Desktop and Shell theme files")
         #if not os.path.exists("/mnt/etc/skel/.config/gtk-3.0"):
