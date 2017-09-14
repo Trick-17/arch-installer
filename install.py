@@ -24,7 +24,7 @@ from pyscripts import s15_users as users
 import pyscripts.utilities as install_utilities
 
 
-print('.... Nice info print ....')
+print(">>>> ARCH INSTALLER STARTED <<<<")
 
 # Allow for additional info being printed during setup
 parser = argparse.ArgumentParser()
@@ -32,27 +32,21 @@ parser.add_argument('--debug', action='store_true',
                    help='Print additional info during setup.')
 args = parser.parse_args()
 install_utilities.DEBUG = args.debug
-
 if args.debug:
     print('--- Debug info-printing enabled ---')
 
 # Try to auto-detect the hardware currently installed
-
-print('Autodecting hardware...')
-
+print(' >> Autodecting hardware...')
 detected_hardware = {}
 detected_hardware['cpu'] = hardware.get_cpu_vendor_id()
 detected_hardware['gpu'] = hardware.get_gpu_vendor()
-
-print('Detected:')
-print('Graphics card vendor:  ', detected_hardware['gpu'])
-print('Processor vendor:  ', detected_hardware['cpu'])
+print(' >> Detected:')
+print(' >> Graphics card vendor:  ', detected_hardware['gpu'])
+print(' >> Processor vendor:  ', detected_hardware['cpu'])
 print('')
-
 ui = user_input.get_user_input(detected_hardware)
 
-
-
+# Go through all the installation functions
 partitions.create_and_mount()
 basic_arch.install_basic_arch()
 with install_utilities.fake_install_user() as user:
@@ -69,3 +63,5 @@ desktop.configure_desktop(ui)
 shell.configure_shell()
 users.configure_users(ui)
 pacman_reflector_hook.configure_pacman_reflector_hook()
+
+print(">>>> ARCH INSTALLER FINISHED <<<<")
