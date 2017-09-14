@@ -120,7 +120,6 @@ def install_packages(user_input, install_user_name):
             package_list += desktop_distros[user_input['desktop']]
             for _, value in gui_packages.items():
                 package_list += value[user_input['system type']]
-
     else:
         for package_type in set(['minimal'] + user_input['packages']):
             package_list += packages[package_type][user_input['system type']]
@@ -130,12 +129,14 @@ def install_packages(user_input, install_user_name):
                 package_list += gui_packages[package_type][user_input['system type']]
 
     ### Generate docker image list
-    server_docker_list = server_docker_images['minimal']
+    server_docker_list = []
     #   Add non-minimal images to list
     if 'full' in user_input['packages']:
-        pass
+        for _, value in server_docker_images.items():
+            server_docker_list += value
     else:
-        pass
+        for package_type in set(['minimal'] + user_input['packages']):
+            server_docker_list += server_docker_images[package_type]
 
     ### Parallel makepkg
     print(" >> Setting `makepkg` parallel")
@@ -167,6 +168,7 @@ def install_packages(user_input, install_user_name):
         print(" >> Going to pull docker images")
         try:
             for image in server_docker_list:
+                run('arch-chroot /mnt sudo -u {} systemctl start docker'.format(install_user_name))
                 run('arch-chroot /mnt sudo -u {} docker pull {}'.format(install_user_name, image))
         except CalledProcessError as error:
             print('Error pulling docker images. Message: ', error.output)
