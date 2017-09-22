@@ -28,7 +28,8 @@ def install_packages(user_input, install_user_name):
                      'unrar',
                      'fortune-mod',
                      'reflector',
-                     'tree']
+                     'tree',
+                     'prezto-git']
     packages = {
         'minimal': {
             'desktop' : [],

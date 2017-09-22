@@ -1,3 +1,4 @@
+import os
 import fileinput
 from shutil import copy2
 from subprocess import CalledProcessError
@@ -15,29 +16,18 @@ def configure_shell():
     ### Install zsh and configure
     print(" >> Installing zsh with prezto")
 
-    ### Clone the Prezto files
-    run("git clone --recursive https://github.com/sorin-ionescu/prezto.git /mnt/etc/skel/.zprezto")
-
-    ### Set correct theme
-    # sed -i "s|theme '<replace>'|theme '$USER_ZSH_THEME'|g" arch-installer/configuration_zsh/zpreztorc
-
-    ### Copy them into the user's folder
-    run("zsh arch-installer/configuration_zsh/zsh_setup_configs.sh")
-
     ### Copy prompt theme and .zpreztorc over
     copy2("arch-installer/configuration_zsh/zshrc", "/mnt/etc/skel/.zshrc")
     copy2("arch-installer/configuration_zsh/zpreztorc", "/mnt/etc/skel/.zpreztorc")
-    copy2("arch-installer/configuration_zsh/prompt_plasmon_setup", "/mnt/etc/skel/.zprezto/modules/prompt/functions/")
 
-    ### Add powerline fonts to display prezto symbols
-    print(" >> Installing powerline fonts")
-    run("git clone https://github.com/powerline/fonts")
-    run("export HOME='/mnt/etc/skel' && zsh ./fonts/install.sh")
+    directory = "/mnt/etc/skel/.zprezto/modules/prompt/functions/"
+    if not os.path.exists(directory):
+        os.makedirs(directory)
 
+    copy2("arch-installer/configuration_zsh/prompt_plasmon_setup", directory)
 
     ### Copy Vim-config
     copy2("arch-installer/configuration_zsh/.vimrc", "/mnt/etc/skel/")
-
 
     ### Change the default shell
     print(" >> Changing default shell to zsh")
