@@ -102,7 +102,7 @@ def get_user_input(detected_hardware):
 
     # Choice of desktops
     user_input['desktop'] = ask_choice('Please choose your desktop environment:',
-                                       ['none', 'KDE plasma'],
+                                       ['none', 'KDE plasma', 'Cinnamon'],
                                        multiple_choice=False)
 
     # TODO: CPU drivers (including automatic detection)

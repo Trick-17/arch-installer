@@ -67,7 +67,9 @@ def install_packages(user_input, install_user_name):
                        'xorg-apps',
                        'yakuake',
                        'plasma-meta',
-                       'kde-applications']
+                       'kde-applications'],
+        "Cinnamon": ['cinnamon',
+                     'gdm']
     }
 
     gui_packages = {

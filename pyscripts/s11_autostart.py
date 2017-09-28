@@ -9,9 +9,13 @@ def autostart_add_services(user_input):
         run('arch-chroot /mnt systemctl enable NetworkManager')
         # ssh daemon
         run("arch-chroot /mnt systemctl enable sshd")
-        # kde desktop daemon
+        # desktop daemon
+        #       kde
         if user_input['desktop'] == 'KDE plasma':
             run("arch-chroot /mnt systemctl enable sddm")
+        #       cinnamon
+        elif user_input['desktop'] == 'Cinnamon':
+            run("arch-chroot /mnt systemctl enable gdm")
         # server docker service
         if user_input['system type'] == 'server':
             run("arch-chroot /mnt systemctl enable docker")
