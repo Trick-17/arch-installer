@@ -68,8 +68,17 @@ def install_packages(user_input, install_user_name):
                        'yakuake',
                        'plasma-meta',
                        'kde-applications'],
+        "Gnome": ['gnome',
+                  'gnome-extra',
+                  'gdm'],
         "Cinnamon": ['cinnamon',
-                     'gdm']
+                     'gdm'],
+        "Deepin": ['deepin',
+                   'deepin-extra',
+                   'lightdm'],
+        "Budgie": ['budgie-desktop',
+                   'gnome',
+                   'gdm']
     }
 
     gui_packages = {

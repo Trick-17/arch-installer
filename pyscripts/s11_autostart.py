@@ -13,8 +13,17 @@ def autostart_add_services(user_input):
         #       kde
         if user_input['desktop'] == 'KDE plasma':
             run("arch-chroot /mnt systemctl enable sddm")
+        #       gnome
+        elif user_input['desktop'] == 'Gnome':
+            run("arch-chroot /mnt systemctl enable gdm")
         #       cinnamon
         elif user_input['desktop'] == 'Cinnamon':
+            run("arch-chroot /mnt systemctl enable gdm")
+        #       deepin
+        elif user_input['desktop'] == 'Deepin':
+            run("arch-chroot /mnt systemctl enable lightdm")
+        #       budgie
+        elif user_input['desktop'] == 'Budgie':
             run("arch-chroot /mnt systemctl enable gdm")
         # server docker service
         if user_input['system type'] == 'server':
