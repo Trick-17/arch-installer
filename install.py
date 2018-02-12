@@ -14,17 +14,16 @@ from pyscripts import s06_bootloader as bootloader
 from pyscripts import s07_fstab as fstab
 from pyscripts import s08_timezone as timezone
 from pyscripts import s09_hostname as hostname
-from pyscripts import s10_network as network
-from pyscripts import s11_sshd as sshd
-from pyscripts import s12_desktop as desktop
-from pyscripts import s13_shell as shell
-from pyscripts import s14_pacman_reflector_hook as pacman_reflector_hook
-from pyscripts import s15_users as users
+from pyscripts import s10_desktop as desktop
+from pyscripts import s11_autostart as autostart
+from pyscripts import s12_shell as shell
+from pyscripts import s13_pacman_reflector_hook as pacman_reflector_hook
+from pyscripts import s14_users as users
 
 import pyscripts.utilities as install_utilities
 
 
-print('.... Nice info print ....')
+print(">>>> ARCH INSTALLER STARTED <<<<")
 
 # Allow for additional info being printed during setup
 parser = argparse.ArgumentParser()
@@ -32,27 +31,21 @@ parser.add_argument('--debug', action='store_true',
                    help='Print additional info during setup.')
 args = parser.parse_args()
 install_utilities.DEBUG = args.debug
-
 if args.debug:
     print('--- Debug info-printing enabled ---')
 
 # Try to auto-detect the hardware currently installed
-
-print('Autodecting hardware...')
-
+print(' >> Autodecting hardware...')
 detected_hardware = {}
 detected_hardware['cpu'] = hardware.get_cpu_vendor_id()
 detected_hardware['gpu'] = hardware.get_gpu_vendor()
-
-print('Detected:')
-print('Graphics card vendor:  ', detected_hardware['gpu'])
-print('Processor vendor:  ', detected_hardware['cpu'])
+print(' >> Detected:')
+print(' >> Graphics card vendor:  ', detected_hardware['gpu'])
+print(' >> Processor vendor:  ', detected_hardware['cpu'])
 print('')
-
 ui = user_input.get_user_input(detected_hardware)
 
-
-
+# Go through all the installation functions
 partitions.create_and_mount()
 basic_arch.install_basic_arch()
 with install_utilities.fake_install_user() as user:
@@ -63,9 +56,10 @@ bootloader.configure_bootloader()
 fstab.generate_fstab()
 timezone.setup_timezone(ui)
 hostname.setup_hostname(ui)
-network.configure_network()
-sshd.configure_ssh()
 desktop.configure_desktop(ui)
+autostart.autostart_add_services(ui)
 shell.configure_shell()
 users.configure_users(ui)
 pacman_reflector_hook.configure_pacman_reflector_hook()
+
+print(">>>> ARCH INSTALLER FINISHED <<<<")

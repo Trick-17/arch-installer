@@ -77,15 +77,22 @@ def get_user_input(detected_hardware):
         print('Unable to set keyboard to requested model: ' + error.output)
 
 
+    # User name
     user_input['username'] = ask_for_input('Please choose your username. '
                                             'If you do not specify a username, no user will be created for you:',
                                             restricted_character_set=True,
                                             not_empty=False)
+    
+    # Host name
     user_input['hostname'] = ask_for_input('Please choose a hostname (device name):',
                                             restricted_character_set=True)
+
+    # Desktop or Server
     user_input['system type'] = ask_choice('Please choose your kind of system:',
                                            ['desktop', 'server'],
                                            multiple_choice=False)
+
+    # Package bundle choices
     if user_input['system type'] == 'desktop':
         user_input['packages'] = ask_choice('Please choose your set of packages:',
                                             ['full', 'developer', 'office', 'media', 'minimal'])
@@ -93,17 +100,17 @@ def get_user_input(detected_hardware):
         user_input['packages'] = ask_choice('Please choose your set of packages:',
                                             ['full', 'developer', 'media', 'minimal'])
 
+    # Choice of desktops
     user_input['desktop'] = ask_choice('Please choose your desktop environment:',
-                                       ['none', 'KDE plasma'],
+                                       ['none', 'KDE plasma', 'Gnome', 'Cinnamon', 'Deepin', 'Budgie'],
                                        multiple_choice=False)
-    # TODO: Check CPU driver
-    # TODO: First check GPU automatically, then ask if it is correct, offer
-    # options otherwise
 
+    # TODO: CPU drivers (including automatic detection)
 
+    # GPU drivers:
+    # First check GPU automatically, then ask if it is correct, offer options otherwise
     gpu_is_correct = ask_choice('The following GPU vendor was auto-detected: `'+detected_hardware['gpu']+'`. Is this correct?',
                                 ['Yes', 'No'], multiple_choice=False)
-    
     if gpu_is_correct == 'Yes':
         user_input['graphics driver'] = detected_hardware['gpu']
     else:
@@ -112,13 +119,14 @@ def get_user_input(detected_hardware):
                                                     'nVidia', 'AMD', 'vbox'],
                                                    multiple_choice=False)
 
+    # Languages
     user_input['language'] = ask_choice('Please choose your language and locale settings.'
                                         'You have the choice between english with reasonable locale settings and english US:',
                                         ['english (reasonable)',
                                          'english (US)'],
                                         multiple_choice=False)
 
-    # TODO: timezones
+    # Timezones
     user_input['timezone'] = ask_choice('Please choose your timezone:',
                                         ['Deutschland', 'Schweiz'],
                                         multiple_choice=False)
